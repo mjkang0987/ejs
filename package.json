@@ -10,6 +10,7 @@
   "author": "mjkang0987",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.2.4",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "node-sass": "^5.0.0",
