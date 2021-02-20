@@ -9,7 +9,14 @@ const port = 3000;
 
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
-app.engine('html', ejs.renderFile);
+
+app.get('/', (req, res) => {
+  res.render('pages/index')
+});
+
+app.get('/list', (req, res) => {
+  res.render('pages/list')
+});
 
 app.use(sassMiddleware({
   src: path.join(__dirname),
@@ -38,10 +45,6 @@ app.use('/styles', postcssMiddleware({
 }));
 
 app.use('/styles', express.static(path.join(__dirname, 'dist/styles')));
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
