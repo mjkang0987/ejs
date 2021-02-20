@@ -44,9 +44,8 @@ app.get('/', (req, res) => {
 
 app.listen(port, _ => {
   console.log(`
-(\\_(\\       
-(=' :') ~ ♡   
-(,(')(')
-http://localhost:${port}`);
+(\\_(\\
+(=' :') ~ server started http://localhost:${port}   
+(,(')(')`);
 })
 
