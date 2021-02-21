@@ -6,6 +6,107 @@
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-<h1>ejs test</h1>
+<%
+  data = jsonData;
+  base = '/images';
+  dataImage = '/data/images/pages/activity';
+%>
+<div class="activityContainer" data-page="main">
+  <h1>인터파크 해외이용권</h1>
+  <!-- 검색영역 + 카테고리 메뉴 S -->
+  <%- include('./partials/_searchForm', {
+    category: true
+  }); %>
+  <!-- 검색영역 + 카테고리 메뉴 E -->
+
+  <!-- 상단 이벤트 + 소배너 S -->
+  <div class="activityEventWrapper">
+    <div class="activityTopSlide">
+      <%- include('./partials/_topSlide'); %>
+    </div>
+    <div class="activityTopBanner">
+      <h2>인터파크 해외이용권 진행중인 기획전</h2>
+      <ul>
+        <% for(let i = 1; i < 3; i++) { %>
+          <li>
+            <a href="#">
+              <img
+                src="<%= dataImage %>/home/top-right-banner<%= i %>.jpg"
+                alt=""
+                onerror="this.src='<%= base %>/common/transparent.png'"
+              >
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <!-- 상단 이벤트 + 소배너 E -->
+
+  <!-- 개인화 추천 S -->
+  <div class="activityRecommendWrapper">
+    <%- include('./partials/_slide', {
+      slideTitle: '‘파리’에서 이런 상품 어떠세요?',
+      slideType: 'recommend',
+      data: data.recommend,
+      slideCount: false
+    }); %>
+  </div>
+  <!-- 개인화 추천 E -->
+
+  <!-- 인기여행지 추천 S -->
+  <div class="activityPopularWrapper">
+    <%- include('./partials/_slide', {
+      slideTitle: '인기 여행지 & Hot 액티비티',
+      slideType: 'popular',
+      data: data.popular,
+      slideCount: false
+    }); %>
+  </div>
+  <!-- 인기여행지 추천 E -->
+
+  <!-- MD상품 S -->
+  <div class="activityMDWrapper">
+    <div class="activityLeftWrapper">
+      <%- include('./partials/_slide', {
+        slideTitle: '국내 MD Pick!',
+        slideType: 'MD1',
+        data: data.md,
+        slideCount: true
+      }); %>
+    </div>
+    <div class="activityRightWrapper">
+      <%- include('./partials/_slide', {
+        slideTitle: '해외 MD Pick!',
+        slideType: 'MD2',
+        data: data.md,
+        slideCount: true
+      }); %>
+    </div>
+  </div>
+  <!-- MD상품 E -->
+
+  <!-- 테마영역 S -->
+  <div class="activityThemeWrapper">
+    <%- include('./partials/_slide', {
+      slideTitle: '붐비지 않는 곳으로 여름휴가 준비를 해볼까요?',
+      slideType: 'theme1',
+      data: data.theme,
+      slideCount: true
+    }); %>
+  </div>
+  <!-- 테마영역 E -->
+
+  <!-- 테마영역 S -->
+  <div class="activityThemeWrapper">
+    <%- include('./partials/_slide', {
+      slideTitle: '파리에서 인테리어가 멋있다고 소문난 레스토랑',
+      slideType: 'theme2',
+      data: data.theme,
+      slideCount: true
+    }); %>
+  </div>
+  <!-- 테마영역 E -->
+</div>
 </body>
 </html>
