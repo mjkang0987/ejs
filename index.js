@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 const path = require('path');
 const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
@@ -9,8 +10,12 @@ const port = 3000;
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('pages/index')
+app.get('/index', (req, res) => {
+  fs.readFile(`${__dirname}/data/items.json`, (err, data) => {
+    const jsonData = JSON.parse(data);
+    res.render('pages/index', {jsonData});
+  });
+
 });
 
 app.get('/list', (req, res) => {
