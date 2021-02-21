@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const ejs = require('ejs');
 const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
