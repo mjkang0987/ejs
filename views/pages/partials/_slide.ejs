@@ -1,0 +1,72 @@
+<%
+  if (typeof slideTitle === 'undefined' || typeof slideTitle !== 'string') {
+    return;
+  }
+
+  const slideTheme = slideType.indexOf('theme') > -1;
+  const slideMD = slideType.indexOf('MD') > -1;
+%>
+<% if (slideTheme) { %>
+  <div class="activityThemeTitleWrapper">
+    <h2><%= slideTitle %></h2>
+  </div>
+<% } else { %>
+  <h2><%= slideTitle %></h2>
+<% } %>
+<div
+  class="activitySlide<%= slideTheme ? 'Theme ' : slideMD ? 'MD ' : '' %><%= slideTheme ? slideType : slideType.replace(/^\w/g, (w) => w.toUpperCase()) %>">
+  <% if (slideCount) { %>
+    <dl class="slideCount">
+      <dt><%= slideTitle %> 현재 상품 순번</dt>
+      <dd class="slideThisIndex">
+        <em>1</em>
+        <span>번째</span>
+      </dd>
+      <dt><%= slideTitle %> 전체 상품 개수</dt>
+      <dd class="slideCountAll">
+        <em></em>
+        <span>개</span>
+      </dd>
+    </dl>
+  <% } %>
+  <ul>
+    <% data.map((item, i) => { %>
+      <li class="activitySlide">
+        <a
+          href="#"
+          title="<%= item.title ? item.title : item %>">
+          <span class="slideImageWrap">
+            <img
+              src="<%= base %>/common/noimage_277.png"
+              class="lazy"
+              data-src="<%= dataImage %>/home/<%= slideType %>-product<%= i + 1 %>.png"
+              onerror="this.src='<%= base %>/common/transparent.png'"
+              alt="">
+          </span>
+          <% if (item.description) { %>
+            <span class="slideSubTitle"><%= item.description %></span>
+          <% } %>
+          <div class="slideTitle">
+            <strong><%= item.title ? item.title : item %></strong>
+          </div>
+          <% if (item.price) { %>
+            <span class="slidePriceWrapper">
+              <% if (item.price) { %>
+             <span class="slidePrice">
+                <em><%= item.price %></em>
+                <span class="slideCurrency">원~</span>
+              </span>
+              <% } %>
+              <% if (item.percent) { %>
+                <span class="slidePercent">
+                  <em><%= item.percent %></em>
+                  <span class="slideCurrency">%</span>
+                </span>
+              <% } %>
+            </span>
+          <% } %>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+</div>

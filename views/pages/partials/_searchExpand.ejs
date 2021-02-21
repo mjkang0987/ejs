@@ -1,0 +1,135 @@
+<%
+var searchDefault = [
+  {
+    type: 'recent',
+    title: '최근 검색',
+    tags: [
+      '디즈니랜드', '다낭 뷔페', '다낭', '뷔페', '호핑투어', '혼자 다낭 여행갈 때 추천할만한 추천 액티비티', '날 더운 데 어디 시원한 곳'
+    ]
+  },
+  {
+    type: 'popular',
+    title: '인기 여행지',
+    tags: [
+      '파리', '다낭', '제주도', '런던', '경기도'
+    ]
+  },
+  {
+    type: 'product',
+    title: '인기상품',
+    tags: [
+      '더 마켓 키친 부페', '오사카 주유 패스 1일권', '여성 전용 사우나', '홍콩 디즈니랜드 입장권'
+    ]
+  }
+];
+%>
+<div class="activitySearchExpand" aria-expanded="false">
+  <div class="searchTagsWrapper">
+    <% searchDefault.map((item) => { %>
+      <div class="searchTags searchTags <%= item.type.replace(/^\w/g, (w) => w.toUpperCase()) %>">
+        <h3><span class="searchTagsTitle">해외이용권 </span><%= item.title %></h3>
+        <% if (item.type === 'recent') { %>
+          <button type="button" class="buttonRecentRemove">
+            <span>해외이용권 최근 검색 리스트</span>
+            전체삭제
+          </button>
+        <% } %>
+        <ul class="searchTagsList">
+          <% item.tags.map((tags) => { %>
+            <li>
+              <!-- 리스트 페이지 작업 전 reload 임시 추가 -->
+              <a href="javascript:location.reload()"><%= tags %></a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    <% }); %>
+  </div>
+  <div class="searchTextWrapper">
+    <div class="searchText searchTextLocation">
+      <h3><span class="searchTagsTitle">해외이용권 검색결과 : </span>지역</h3>
+      <ul>
+        <li>
+          <a href="javascript:location.reload()">
+            나다라<strong class="searchValue"></strong>나다라마바사
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            <strong class="searchValue"></strong>나
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            오로<strong class="searchValue"></strong>봉
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            참치<strong class="searchValue"></strong>페스트
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            기<strong class="searchValue"></strong>나다라나다라
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="searchText searchTextProduct">
+      <h3><span class="searchTagsTitle">해외이용권 검색결과 : </span>상품</h3>
+      <ul>
+        <li>
+          <a href="javascript:location.reload()">
+            나다라<strong class="searchValue"></strong>나다라마바사
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            <strong class="searchValue"></strong>나
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            오로<strong class="searchValue"></strong>봉
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            참치<strong class="searchValue"></strong>페스트
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            기<strong class="searchValue"></strong>나다라나다라
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            나다라<strong class="searchValue"></strong>나다라마바사
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            <strong class="searchValue"></strong>나
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            오로<strong class="searchValue"></strong>봉
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            참치<strong class="searchValue"></strong>페스트
+          </a>
+        </li>
+        <li>
+          <a href="javascript:location.reload()">
+            기<strong class="searchValue"></strong>나다라나다라
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<h2>인터파크 해외이용권 진행중인 이벤트</h2>
+<div class="activitySlideEvent">
+  <ul>
+    <% data.eventSlide.map((es, i) => { %>
+      <li class="slide">
+        <a href="#">
+          <img
+            src="<%= base %>/common/noimage_277.png"
+            class="lazy"
+            data-src="<%= dataImage %>/home/top-banner<%= i + 1 %>.jpg"
+            alt="<%= (i + 1) + es %>"
+            onerror="this.src='<%= base %>/common/transparent.png'"
+          >
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+  <div class="activitySlideEventIndicator">
+    <ul>
+    <% data.eventIndicator.map((ei, i) => { %>
+      <li
+        class="slideIndicator<%= i === 0 ? ' active' : '' %>"
+        data-slide-index="<%= i %>">
+        <a
+          href="#"
+          title="<%= (i + 1) + ei %>">
+          <span>
+            <%= (i + 1) + ei %>
+          </span>
+        </a>
+      </li>
+    <% }); %>
+    </ul>
+  </div>
+</div>

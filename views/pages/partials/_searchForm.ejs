@@ -1,0 +1,17 @@
+<div class="activitySearchWrapper<%= typeof searchType !== 'undefined' && searchType !== false ? ' typeSub' : '' %>">
+  <h2>인터파크 해외이용권 찾기</h2>
+  <div class="activitySearchFormWrapper">
+    <div class="activitySearchForm">
+      <label>
+        <input
+          type="search"
+          class="inputSearch"
+          placeholder="<%= typeof searchType !== 'undefined' && searchType !== false ? '어떤 상품을 찾으세요?' : '여행지나 액티비티 상품을 검색해 보세요.' %>">
+      </label>
+      <%- include('./_searchExpand'); %>
+    </div>
+    <% if (typeof category !== 'undefined' && category !== false) { %>
+      <%- include('./_category'); %>
+    <% } %>
+  </div>
+</div>
