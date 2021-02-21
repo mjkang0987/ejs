@@ -49,6 +49,7 @@ app.use('/styles', postcssMiddleware({
 }));
 
 app.use('/styles', express.static(path.join(__dirname, 'dist/styles')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
