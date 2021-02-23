@@ -15,7 +15,6 @@ app.get('/index', (req, res) => {
     const jsonData = JSON.parse(data);
     res.render('pages/index', {jsonData});
   });
-
 });
 
 app.get('/list', (req, res) => {
