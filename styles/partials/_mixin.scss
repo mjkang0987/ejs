@@ -1,0 +1,530 @@
+$normalWeight: 300;
+$boldWeight: 500;
+$base: "/images" !default;
+
+@mixin blind {
+    position: absolute;
+    left: -9999px;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+
+@mixin line-clamp($val) {
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $val;
+    -webkit-box-orient: vertical;
+}
+
+@mixin no-image($val) {
+    background: #ebebeb url("#{$base}/common/noimg_#{$val}.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+@mixin text-overflow {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin percent-arrow-down($val) {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 14px;
+    background: url("#{$base}/pages/activity/common/arrow-down.png") no-repeat center center;
+    background-size: auto 14px;
+    margin-left: 4px;
+    vertical-align: $val;
+}
+
+@mixin design-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@mixin product-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@mixin slide-count($top, $direction, $val) {
+    &Count {
+        position: absolute;
+        top: $top;
+        @if ($direction == right) {
+            right: $val;
+        } @else {
+            left: $val;
+        }
+
+        &All {
+            em {
+                &:before {
+                    content: "\002f";
+                    margin: 0 2px;
+                }
+            }
+        }
+
+        dt {
+            @include blind;
+        }
+
+        dd {
+            display: inline-block;
+
+            em {
+                position: relative;
+                font-size: 12px;
+                color: #999;
+            }
+
+            span {
+                @include blind;
+            }
+        }
+    }
+}
+
+@mixin slide-controller-triangle($top, $direction, $val) {
+    &-controls-direction {
+        position: absolute;
+        top: $top;
+        @if ($direction == right) {
+            right: $val;
+        } @else {
+            left: $val;
+        }
+        box-sizing: border-box;
+        border: solid 1px #b6bdc7;
+    }
+
+    &-prev,
+    &-next {
+        display: inline-block;
+        position: relative;
+        width: 21px;
+        height: 21px;
+        background-color: #fff;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 8px;
+        }
+    }
+
+    &-prev {
+        &:after {
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 5px solid #333;
+        }
+    }
+
+    &-next {
+        &:before {
+            content: "";
+            position: absolute;
+            left: -1px;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background-color: #dfe5ed;
+        }
+
+        &:after {
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid #333;
+        }
+    }
+}
+
+@mixin slide-controller-round($top) {
+    &-prev,
+    &-next {
+        position: absolute;
+        top: $top;
+        width: 50px;
+        height: 50px;
+        background: url("#{$base}/pages/activity/common/slide-round-arrow.png") no-repeat;
+        background-size: 50px auto;
+        text-indent: -9999px;
+        border-radius: 50px;
+        box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .3);
+    }
+
+    &-next {
+        right: -26px;
+        background-position: 0 -140px;
+
+        &:hover {
+            background-position: 0 -210px;
+        }
+    }
+
+    &-prev {
+        left: -26px;
+        background-position: 0 0;
+
+        &:hover {
+            background-position: 0 -70px;
+        }
+    }
+}
+
+@mixin over-zoom {
+    transform: scale(1.2);
+    transform-origin: center;
+    transition: all .3s;
+}
+
+@mixin over-shadow {
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .3);
+    transition: all .2s;
+}
+
+@mixin custom-checkbox($top, $direction, $val) {
+    input[type="checkbox"] {
+        position: absolute;
+        top: 3px;
+        @if ($direction == right) {
+            right: 3px;
+        } @else {
+            left: 3px;
+        }
+
+        & + label {
+            display: block;
+            position: relative;
+            cursor: pointer;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: $top;
+                @if ($direction == right) {
+                    right: 0;
+                } @else {
+                    left: 0;
+                }
+                right: 0;
+                width: 20px;
+                height: 20px;
+                border: solid 1px #b6bdc7;
+                box-sizing: border-box;
+                background-color: #fff;
+            }
+        }
+    }
+
+    &.checked {
+        label {
+            &:after {
+                content: "";
+                position: absolute;
+                top: $top + 6px;
+                @if ($direction == right) {
+                    right: $val + 4px;
+                } @else {
+                    left: $val + 4px;
+                }
+                width: 12px;
+                height: 10px;
+                background: url("#{$base}/pages/activity/common/icon-check.png") no-repeat;
+                background-size: 11px auto;
+            }
+        }
+    }
+}
+
+@mixin filter-toggle-icon {
+    &:after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 12px;
+        height: 6px;
+        background: url("#{$base}/pages/activity/common/arrow-category.png") no-repeat 0 -26px;
+        background-size: 12px auto;
+    }
+}
+
+@mixin wish($top, $direction, $val) {
+    &Wish {
+        position: absolute;
+        top: $top;
+        @if ($direction == right) {
+            right: $val;
+        } @else {
+            left: $val;
+        }
+        width: 28px;
+        height: 27px;
+        padding: 5px;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+            position: absolute;
+            top: 16px;
+            @if ($direction == right) {
+                right: 16px;
+            } @else {
+                left: 16px;
+            }
+            width: 3px;
+            height: 3px;
+
+            & + label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("#{$base}/pages/activity/common/icon-heart.png");
+                background-repeat: no-repeat;
+                background-position: 5px 5px;
+                background-size: 28px auto;
+                z-index: 1;
+                cursor: pointer;
+            }
+        }
+
+        &.checked {
+            input[type="checkbox"] {
+                & + label {
+                    background-position: 5px -40px;
+                }
+            }
+        }
+    }
+}
+
+@mixin review-star($width, $height) {
+    &Star {
+        display: inline-block;
+        width: $width * 5;
+        height: $height;
+        background: url("#{$base}/pages/activity/common/icon-star-gray.png") repeat-x;
+
+        @for $i from 1 through 5 {
+            &[data-star="#{$i}"] {
+                i {
+                    width: $width * $i;
+                }
+            }
+
+            &[data-star="#{$i}.5"] {
+                i {
+                    width: $width * $i + $width * .5;
+                }
+            }
+        }
+
+
+        i {
+            display: inline-block;
+            height: $height;
+            background: url("#{$base}/pages/activity/common/icon-star-point.png") repeat-x;
+        }
+
+    }
+}
+
+@mixin range-bar {
+    .filter {
+        &Slider {
+            position: relative;
+            height: 3px;
+            width: 158px;
+            margin-top: 34px;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 138px;
+                height: 100%;
+                margin-left: -69px;
+                background-color: #cacaca;
+                border-radius: 3px;
+            }
+
+            &Bar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 3px;
+                background-color: #666;
+                z-index: 1;
+            }
+
+            &Range {
+                position: relative;
+                margin-top: 24px;
+
+                > div {
+                    position: absolute;
+                    top: 0;
+                    font-size: 12px;
+                    color: #000;
+                }
+
+                .priceMin {
+                    left: 0;
+                }
+
+                .priceMax {
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    .grip {
+        &Left,
+        &Right {
+            position: absolute;
+            top: -8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3);
+            background-color: #fff;
+            z-index: 1;
+            cursor: pointer;
+        }
+    }
+}
+
+@mixin star-rate($image: "#{$imgPath}/img_starSmall.png", $width: 18px, $height: 17px, $gap: 0) {
+    $onestar: $width + $gap;
+    position: relative;
+    display: inline-block;
+    width: 4 * $onestar + $width;
+    height: $height;
+    background: url($image) repeat-x;
+    overflow: hidden;
+    vertical-align: -3px;
+    text-indent: -9999px;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: url($image) repeat-x 0 100%;
+    }
+
+    @for $i from 1 through 5 {
+        &[data-star-rate="#{$i}"]:before {
+            width: $i * $onestar;
+        }
+
+        $half: $i - .5;
+
+        &[data-star-rate="#{$half}"]:before {
+            width: ($i - 1) * $onestar + $width / 2;
+        }
+    }
+}
+
+@keyframes search-accordion {
+    0% {
+        opacity: 1;
+        max-height: 0;
+    }
+
+    50% {
+        opacity: 1;
+        max-height: 410px;
+    }
+
+    100% {
+        opacity: 1;
+        max-height: 410px;
+    }
+}
+
+@keyframes search-accordion-sub {
+    0% {
+        opacity: 1;
+        max-height: 0;
+    }
+
+    50% {
+        opacity: 1;
+        max-height: 385px;
+    }
+
+    100% {
+        opacity: 1;
+        max-height: 385px;
+    }
+}
+
+@keyframes search-accordion-sub {
+    0% {
+        opacity: 1;
+        max-height: 0;
+    }
+
+    50% {
+        opacity: 1;
+        max-height: 385px;
+    }
+
+    100% {
+        opacity: 1;
+        max-height: 385px;
+    }
+}
+
+@keyframes layer-on {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes calendar-on {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

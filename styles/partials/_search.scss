@@ -1,0 +1,411 @@
+.activity {
+    &Search {
+        &Wrapper {
+            position: relative;
+            min-width: 1280px;
+            height: 328px;
+            box-sizing: border-box;
+            background: #fff url("#{$base}/pages/activity/home/background-search.jpg") no-repeat center top;
+            background-size: auto 210px;
+            padding: 120px 0 15px;
+
+            h2 {
+                @include blind;
+            }
+
+            &.typeSub {
+                height: 80px;
+                background: #63b9ce url("#{$base}/pages/activity/common/background-search-small.jpg") no-repeat center top;
+                padding: 0;
+
+                .activitySearchForm {
+                    top: 20px;
+                    right: 10px;
+                    left: auto;
+                    width: 310px;
+                    height: 40px;
+                    margin-left: 0;
+
+                    &Wrapper {
+                        position: absolute;
+                        width: 1280px;
+                        height: 80px;
+                        top: 0;
+                        left: 50%;
+                        margin-left: -640px;
+                    }
+
+                    &.active {
+                        top: 15px;
+                        height: auto;
+                        border: solid 1px #999;
+                        padding-top: 4px;
+                        box-sizing: border-box;
+                        box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .2);
+
+                        .activitySearchExpand {
+                            height: 310px;
+                            padding: 20px 10px 20px 20px;
+                            animation-delay: 1s;
+                            animation: search-accordion-sub .3s;
+                            animation-fill-mode: forwards;
+
+                            &:before {
+                                width: 286px;
+                                margin-left: -143px;
+                            }
+                        }
+
+                        label {
+                            &:before {
+                                left: 17px;
+                            }
+                        }
+
+                        .inputSearch {
+                            padding-left: 41px;
+                        }
+                    }
+
+                    label {
+                        display: inline-block;
+                        width: 100%;
+
+                        &:before {
+                            top: 11px;
+                            width: 20px;
+                            height: 20px;
+                            background: url("#{$base}/pages/activity/common/icon-search-small-color.png") no-repeat 0 center;
+                        }
+                    }
+
+                    .inputSearch {
+                        height: 40px;
+                        padding-left: 42px;
+                        font-size: 14px;
+                        border: 1px solid #fff;
+                        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+                        line-height: 40px;
+                    }
+                }
+
+                .search {
+                    &Text {
+                        &Wrapper {
+                            > div {
+                                &:first-child {
+                                    h3 {
+                                        margin-top: 0;
+                                    }
+                                }
+
+                                h3 {
+                                    text-indent: 0;
+                                    margin: 30px 0 20px;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+
+                        &Location {
+                            a {
+                                padding-left: 20px;
+
+                                &:before {
+                                    left: 0;
+                                    width: 13px;
+                                    height: 18px;
+                                    background-size: 13px auto;
+                                }
+                            }
+                        }
+
+                        li {
+                            margin-top: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &Form {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            width: 544px;
+            height: 50px;
+            border-radius: 50px;
+            margin-left: -272px;
+            background-color: #fff;
+
+            &.active {
+                top: 110px;
+                height: auto;
+                padding-top: 10px;
+                border-radius: 25px;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+
+                .inputSearch {
+                    border-radius: 25px 25px 0 0;
+                    box-shadow: none;
+                }
+
+                .activitySearchExpand {
+                    display: block;
+                    position: relative;
+                    max-height: 410px;
+                    box-sizing: border-box;
+                    padding: 25px 20px;
+                    background-color: #fff;
+                    border-radius: 0 0 25px 25px;
+                    z-index: 1;
+                    animation-delay: 1s;
+                    animation: search-accordion .3s;
+                    animation-fill-mode: forwards;
+                }
+            }
+
+            input[type="search"] {
+                &::-ms-clear {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
+
+                &::-ms-reveal {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
+            }
+
+            input[type="search"] {
+                &::-webkit-search-decoration,
+                &::-webkit-search-cancel-button,
+                &::-webkit-search-results-button,
+                &::-webkit-search-results-decoration {
+                    display: none;
+                }
+            }
+
+            label {
+                display: block;
+                position: relative;
+                width: 544px;
+                margin: 0 auto;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 12px;
+                    left: 18px;
+                    width: 25px;
+                    height: 25px;
+                    background: url("#{$base}/pages/activity/common/icon-search.png") no-repeat center center;
+                    z-index: 1;
+                }
+            }
+
+            .inputSearch {
+                width: 100%;
+                height: 50px;
+                border-radius: 50px;
+                background-color: #fff;
+                border: none;
+                padding: 0 20px 0 60px;
+                box-sizing: border-box;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, .1);
+                color: #000;
+                font-size: 18px;
+                line-height: 50px;
+                outline: none;
+
+                &::placeholder {
+                    color: #999;
+                }
+            }
+
+            .inputSearch:-ms-input-placeholder {
+                color: #999;
+            }
+        }
+
+        &Expand {
+            display: none;
+            overflow: hidden;
+            position: relative;
+            max-height: 0;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -252px;
+                width: 504px;
+                height: 1px;
+                background-color: #000;
+            }
+        }
+    }
+}
+
+.search {
+    &Tags {
+        h3 {
+            margin: 15px 0 15px;
+            text-indent: 5px;
+            font-size: 16px;
+            color: #000;
+            font-weight: $boldWeight;
+
+            .searchTagsTitle {
+                @include blind;
+            }
+        }
+
+        ul {
+            font-size: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin: 0 10px 10px 0;
+            vertical-align: top;
+
+            a {
+                display: block;
+                padding: 0 15px;
+                border: 1px solid #ccc;
+                border-radius: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                color: #333;
+            }
+        }
+
+        &Wrapper {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-height: 354px;
+            overflow-y: auto;
+
+            &.active {
+                display: block;
+            }
+
+            > div {
+                &:first-child {
+                    h3 {
+                        margin-top: 0;
+                    }
+                }
+            }
+
+            .button {
+                &RecentRemove {
+                    position: absolute;
+                    top: 2px;
+                    right: 15px;
+                    border: none;
+                    background: none;
+                    padding: 0 5px;
+                    color: #666;
+                    cursor: pointer;
+
+                    span {
+                        @include blind;
+                    }
+                }
+            }
+        }
+    }
+
+    &Text {
+        & + .searchText {
+            h3 {
+                margin-top: 45px;
+            }
+        }
+
+        h3 {
+            margin: 20px 0 15px;
+            text-indent: 5px;
+            font-size: 16px;
+            color: #000;
+            font-weight: $boldWeight;
+
+            .searchTagsTitle {
+                @include blind;
+            }
+        }
+
+        li {
+            margin-top: 15px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            a {
+                display: inline-block;
+                position: relative;
+                font-size: 14px;
+                color: #333;
+                vertical-align: top;
+                line-height: 16px;
+                word-break: break-all;
+            }
+
+            strong {
+                font-weight: $boldWeight;
+                color: #1eb19e;
+            }
+        }
+
+        &Wrapper {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-height: 354px;
+            overflow-y: auto;
+
+            &.active {
+                display: block;
+            }
+
+            > div {
+                &:first-child {
+                    h3 {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+
+        &Location {
+            a {
+                padding-left: 28px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 5px;
+                    width: 15px;
+                    height: 22px;
+                    background: url("#{$base}/pages/activity/common/icon-location.png") no-repeat center center;
+                }
+            }
+        }
+
+        &Product {
+            a {
+                padding-left: 5px;
+            }
+        }
+    }
+}

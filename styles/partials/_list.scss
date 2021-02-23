@@ -1,0 +1,552 @@
+.list {
+    &TitleWrap {
+        position: relative;
+        padding-top: 28px;
+
+        h2 {
+            position: relative;
+            padding: 0 20px 18px;
+            font-size: 24px;
+            font-weight: $boldWeight;
+            color: #000;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #e9edf3;
+            }
+        }
+    }
+
+    &TitleCategory {
+        &Expand {
+            display: none;
+            overflow: hidden;
+            position: absolute;
+            top: 37px;
+            left: 10px;
+            width: 200px;
+            box-shadow: 0 0 5px 2px rgba(0, 0, 0, .1);
+            background-color: #fff;
+            box-sizing: border-box;
+            border: solid 1px #666;
+            border-radius: 10px;
+            z-index: 2;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        li {
+            position: relative;
+            height: 42px;
+
+            &:first-child {
+                &:before {
+                    display: none;
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #dfe5ed;
+            }
+
+            &:hover {
+                background-color: #f4f6f9;
+            }
+
+            a {
+                @include text-overflow;
+                width: 100%;
+                height: 100%;
+                padding: 0 18px;
+                box-sizing: border-box;
+                line-height: 40px;
+                font-size: 14px;
+                color: #666;
+                font-weight: $boldWeight;
+            }
+        }
+
+        &Wrapper {
+            position: relative;
+            height: 36px;
+            padding: 0 20px 18px;
+
+            &.active {
+                .listTitleCategoryExpand {
+                    display: block;
+                }
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #e9edf3;
+            }
+
+            .listSelectWrap {
+                display: inline-block;
+            }
+
+            .buttonCategoryChange {
+                padding: 0 24px 0 0;
+                border: 0;
+                background: transparent;
+                font-size: 0;
+                outline: 0;
+                cursor: pointer;
+
+                .list {
+                    &Title {
+                        font-size: 24px;
+                        line-height: 26px;
+                        color: #000;
+                        font-weight: $boldWeight;
+                    }
+
+                    &Count {
+                        position: relative;
+                        margin-left: 5px;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            top: 2px;
+                            right: -18px;
+                            width: 10px;
+                            height: 6px;
+                            background: url("#{$base}/pages/activity/common/icon-select.png") no-repeat;
+                            background-size: 10px auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &Count {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #666;
+        vertical-align: baseline;
+    }
+
+    &Keyword {
+        display: inline-block;
+        color: #000;
+        font-size: 16px;
+
+        strong {
+            font-weight: $boldWeight;
+        }
+
+        &Wrapper {
+            padding: 20px 20px 10px;
+
+            .linkAnotherKeyword {
+                position: relative;
+                margin-left: 20px;
+                padding-right: 10px;
+                font-size: 16px;
+                font-weight: $boldWeight;
+                color: #000;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 8px;
+                    right: 0;
+                    border-top: 4px solid transparent;
+                    border-bottom: 4px solid transparent;
+                    border-left: 4px solid #333;
+                }
+            }
+        }
+
+    }
+
+    &SortWrap {
+        position: absolute;
+        top: 46px;
+        right: 10px;
+        font-size: 0;
+
+        li {
+            display: inline-block;
+            position: relative;
+            padding: 0 10px;
+
+            &.active {
+                button {
+                    font-weight: $boldWeight;
+
+                    span {
+                        font-weight: $boldWeight;
+                    }
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 6px;
+                left: 0;
+                width: 1px;
+                height: 15px;
+                background-color: #dfe5ed;
+            }
+
+            &:first-child {
+                &:before {
+                    display: none;
+                }
+            }
+
+            button {
+                border: none;
+                background: transparent;
+                padding: 2px;
+                font-size: 14px;
+                color: #000;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &FilterWrap {
+        display: none;
+        padding: 10px 0 10px;
+        font-size: 0;
+        white-space: normal;
+
+        &.active {
+            display: block;
+        }
+
+        li {
+            display: inline-block;
+            position: relative;
+            margin: 10px 0 0 10px;
+
+            button {
+                height: 30px;
+                padding: 0 26px 0 15px;
+                border: 1px solid #ccc;
+                border-radius: 30px;
+                line-height: 28px;
+                background: transparent url("#{$base}/pages/activity/common/icon-category-delete.png") no-repeat right 10px center;
+
+                cursor: pointer;
+
+
+                span {
+                    @include blind;
+                }
+            }
+        }
+    }
+
+    &Product {
+        &NoList {
+            padding-top: 190px;
+            text-align: center;
+
+            strong {
+                font-size: 22px;
+                font-weight: $boldWeight;
+                color: #000;
+            }
+
+            p {
+                margin-top: 36px;
+                font-size: 14px;
+                color: #999;
+            }
+        }
+
+        &NoSearch {
+            padding: 164px 0 1300px;
+            text-align: center;
+
+            strong {
+                font-size: 22px;
+                font-weight: $boldWeight;
+                color: #000;
+            }
+
+            p {
+                margin-top: 30px;
+                font-size: 14px;
+                color: #999;
+            }
+        }
+
+        > li {
+            position: relative;
+            padding: 0 20px;
+            margin-top: 30px;
+            white-space: normal;
+
+            &:first-child {
+                margin-top: 0;
+
+                &:before {
+                    display: none;
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #e9edf3;
+            }
+
+            a {
+                display: block;
+                width: 100%;
+                font-size: 0;
+            }
+        }
+
+        &Wrap {
+            position: relative;
+            padding: 10px 0 40px;
+        }
+    }
+
+}
+
+.product {
+    @include wish(40px, left, 193px);
+
+    &Image {
+        @include no-image(200);
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        width: 220px;
+        height: 160px;
+        margin-top: 30px;
+        border-radius: 10px;
+        vertical-align: top;
+
+        img {
+            @include product-image;
+        }
+    }
+
+    &Information {
+        display: inline-block;
+        width: 560px;
+        margin-top: 10px;
+        vertical-align: top;
+
+        &Wrapper {
+            display: inline-block;
+            position: relative;
+            width: 790px;
+            height: 170px;
+            box-sizing: border-box;
+            padding-left: 30px;
+            margin-top: 20px;
+            vertical-align: top;
+        }
+    }
+
+    &Badge {
+        display: inline-block;
+        height: 24px;
+        border: solid 1px #ccc;
+        padding: 0 8px;
+        margin: 10px 5px 0 0;
+        border-radius: 5px;
+        line-height: 22px;
+        font-size: 12px;
+        color: #666;
+
+        &List {
+            display: block;
+            width: 572px;
+            margin-bottom: 10px;
+
+            & + .productInformation {
+                margin-top: 0;
+
+                .productTitle {
+                    margin-top: 0;
+                }
+
+                & + .productPriceWrapper {
+                    margin-top: 0;
+                }
+            }
+
+            & + .productInformation {
+                & + .productPriceWrapper {
+                    height: 124px;
+                }
+            }
+        }
+    }
+
+    &Title {
+        @include text-overflow;
+        width: 100%;
+        margin: 0 0 40px;
+        font-size: 18px;
+        color: #000;
+        font-weight: $boldWeight;
+    }
+
+    &DescriptionWrap {
+        position: absolute;
+        bottom: 0;
+        left: 30px;
+        width: 572px;
+    }
+
+    &Description,
+    &Guide {
+        @include text-overflow;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    &Description {
+        font-size: 14px;
+        color: #666;
+    }
+
+    &Guide {
+        span {
+            font-size: 14px;
+            color: #666;
+            vertical-align: top;
+
+            &:before {
+                content: "\00b7";
+                margin: 0 4px;
+                vertical-align: top;
+            }
+
+            &:first-child {
+                padding-left: 0;
+
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &Price {
+        em,
+        .productCurrency {
+            font-size: 20px;
+            font-weight: $boldWeight;
+            vertical-align: middle;
+            color: #000;
+        }
+
+        &Wrapper {
+            display: inline-block;
+            position: relative;
+            width: 188px;
+            height: 160px;
+            padding-left: 30px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+    }
+
+    &Origin {
+        em,
+        .productCurrency {
+            text-decoration: line-through;
+            font-size: 14px;
+            color: #999;
+            vertical-align: middle;
+        }
+
+        &Wrapper {
+            margin-top: 4px;
+        }
+    }
+
+    &Percent {
+        margin-left: 10px;
+
+        em,
+        .productCurrency {
+            font-size: 16px;
+            color: #dc941b;
+            font-weight: $boldWeight;
+            vertical-align: middle;
+        }
+
+        .productCurrency {
+            &:after {
+                @include percent-arrow-down(-1px);
+            }
+        }
+    }
+
+    &Score {
+        position: absolute;
+        bottom: 3px;
+        left: 30px;
+        width: 100%;
+    }
+
+    &Review {
+        display: block;
+        margin-top: 8px;
+
+        em,
+        .productCurrency {
+            display: inline-block;
+            font-size: 14px;
+            color: #666;
+            vertical-align: middle;
+        }
+
+        em {
+            position: relative;
+            margin-right: 4px;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #666;
+            }
+        }
+    }
+
+    @include review-star(16px, 14px);
+}
+

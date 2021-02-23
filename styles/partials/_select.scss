@@ -1,0 +1,90 @@
+@import "base/variables";
+
+%select {
+    z-index: 3;
+    position: relative;
+    height: 100%;
+    font-size: 16px;
+    color: #343434;
+    cursor: pointer;
+    border: 1px solid #b6bdc7;
+    white-space: nowrap;
+    background: #fff;
+    user-select: none;
+    font-weight: 400;
+
+    &:active {
+        background: color-shades(#fff);
+    }
+
+    span {
+        display: block;
+        width: 272px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0 40px 0 8px;
+
+        &:before {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            content: "";
+        }
+
+        &:after {
+            position: absolute;
+            right: 15px;
+            top: 0;
+            width: 13px;
+            height: 100%;
+            background: url("#{$base}/pages/checkinnow/detail/housing/downarrow.png") no-repeat center;
+            content: "";
+        }
+    }
+
+    &.open {
+        z-index: 4;
+
+        &:active {
+            background: none;
+        }
+
+        ul {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+
+    ul {
+        display: none;
+        z-index: 3;
+        overflow: auto;
+        position: absolute;
+        max-height: 257px;
+        margin: -1px;
+        border: 1px solid #333;
+        background: #fff;
+
+        li {
+            padding: 7px 10px;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+
+            &:hover {
+                background: #f1f1f1;
+            }
+
+            & + li {
+                border-top: 1px solid #dfe5ed;
+            }
+
+            &.disabled {
+                color: #ccc;
+            }
+        }
+    }
+}

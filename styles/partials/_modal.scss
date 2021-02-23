@@ -1,0 +1,267 @@
+.layer {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #666;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .1);
+    text-align: left;
+
+    &Position {
+        height: 100%;
+        text-align: center;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            vertical-align: middle;
+        }
+    }
+
+    &Wrapper {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        transform: translate3d(0, 0, 0);
+
+        &.active {
+            display: block;
+            animation: layer-on .3s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    &Title {
+        position: relative;
+        height: 50px;
+        padding-left: 20px;
+
+        strong {
+            font-size: 16px;
+            color: #000;
+            line-height: 48px;
+            font-weight: $boldWeight;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #dfe5ed;
+        }
+    }
+
+    &Content {
+        overflow-y: auto;
+        height: 335px;
+
+        &Wrapper {
+            display: inline-block;
+            width: 100%;
+            padding: 30px 30px;
+            box-sizing: border-box;
+            vertical-align: middle;
+
+            .layerSearchForm {
+                display: block;
+                width: 100%;
+                height: 40px;
+                padding: 0 0 0 42px;
+                border-radius: 0;
+                border: 1px solid #000;
+                background: url("#{$base}/pages/activity/common/icon-search-middle.png") no-repeat 15px center;
+                line-height: 38px;
+                font-size: 14px;
+                color: #000;
+
+                &Wrapper {
+                    display: block;
+                    margin-bottom: 10px;
+                }
+
+                &::placeholder {
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    .buttonCloseLayer {
+        position: absolute;
+        right: 17px;
+        top: 17px;
+        width: 20px;
+        height: 20px;
+        padding: 3px;
+        border: none;
+        background: url("#{$base}/pages/activity/common/icon-close.png") no-repeat center center;
+        cursor: pointer;
+
+        span {
+            @include blind;
+        }
+    }
+
+    &Location {
+        .layer {
+            width: 630px;
+
+            &Content {
+                padding-right: 10px;
+
+                > div {
+                    display: table;
+                    position: relative;
+                    width: 100%;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        background-color: #dee5eb;
+                    }
+
+                    > div {
+                        display: table-cell;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+
+            &ButtonWrap {
+                padding-top: 30px;
+                font-size: 0;
+                text-align: center;
+
+                ul {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-left: 10px;
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .button {
+                &Apply,
+                &Reset {
+                    width: 120px;
+                    height: 40px;
+                    padding: 0;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    span {
+                        font-size: 14px;
+                        font-weight: $boldWeight;
+                        line-height: 38px;
+                    }
+                }
+
+                &Apply {
+                    background-color: #333;
+                    border: 1px solid #333;
+                    color: #fff;
+                }
+
+                &Reset {
+                    border: 1px solid #b6bdc7;
+                    background: #fff url("#{$base}/pages/activity/common/icon-reset.png") no-repeat 32px center;
+
+                    span {
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+
+        .layerFilter {
+            &Nation {
+                width: 80px;
+                padding: 20px 10px;
+                box-sizing: border-box;
+                font-weight: $boldWeight;
+
+                strong {
+                    color: #1eb19e;
+                    font-weight: $boldWeight;
+                }
+            }
+
+            &City {
+                font-size: 0;
+                padding-bottom: 20px;
+
+                li {
+                    display: inline-block;
+                    position: relative;
+                    margin: 20px 0 0 20px;
+                    vertical-align: top;
+
+                    &.checked {
+                        label {
+                            font-weight: $boldWeight;
+                        }
+                    }
+
+                    label {
+                        padding-left: 30px;
+                        font-size: 14px;
+                        color: #000;
+
+                        strong {
+                            font-weight: $boldWeight;
+                            color: #1eb19e;
+                        }
+                    }
+
+                    @include custom-checkbox(0, left, 0);
+                }
+            }
+
+            &NoList {
+                height: 334px;
+                box-sizing: border-box;
+                padding: 80px 0 0 0;
+
+                strong {
+                    display: block;
+                    text-align: center;
+                    font-weight: $boldWeight;
+                    font-size: 16px;
+                }
+
+                p {
+                    margin-top: 20px;
+                    text-align: center;
+                    font-size: 14px;
+                    color: #666;
+                }
+            }
+        }
+    }
+}
