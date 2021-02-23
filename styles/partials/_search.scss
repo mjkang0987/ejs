@@ -5,7 +5,7 @@
             min-width: 1280px;
             height: 328px;
             box-sizing: border-box;
-            background: #fff url("#{$base}/pages/activity/home/background-search.jpg") no-repeat center top;
+            background: #fff url("#{$base}/background-search.jpg") no-repeat center top;
             background-size: auto 210px;
             padding: 120px 0 15px;
 
@@ -15,7 +15,7 @@
 
             &.typeSub {
                 height: 80px;
-                background: #63b9ce url("#{$base}/pages/activity/common/background-search-small.jpg") no-repeat center top;
+                background: #63b9ce url("#{$base}/common/background-search-small.jpg") no-repeat center top;
                 padding: 0;
 
                 .activitySearchForm {
@@ -75,7 +75,7 @@
                             top: 11px;
                             width: 20px;
                             height: 20px;
-                            background: url("#{$base}/pages/activity/common/icon-search-small-color.png") no-repeat 0 center;
+                            background: url("#{$base}/common/icon-search-small-color.png") no-repeat 0 center;
                         }
                     }
 
@@ -201,7 +201,7 @@
                     left: 18px;
                     width: 25px;
                     height: 25px;
-                    background: url("#{$base}/pages/activity/common/icon-search.png") no-repeat center center;
+                    background: url("#{$base}/common/icon-search.png") no-repeat center center;
                     z-index: 1;
                 }
             }
@@ -397,7 +397,7 @@
                     left: 5px;
                     width: 15px;
                     height: 22px;
-                    background: url("#{$base}/pages/activity/common/icon-location.png") no-repeat center center;
+                    background: url("#{$base}/common/icon-location.png") no-repeat center center;
                 }
             }
         }

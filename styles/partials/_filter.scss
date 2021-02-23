@@ -119,7 +119,7 @@
                         border: none;
                         text-indent: -9999px;
                         padding: 0;
-                        background: transparent url("#{$base}/pages/activity/common/arrow-calendar.png") no-repeat;
+                        background: transparent url("#{$base}/common/arrow-calendar.png") no-repeat;
                         cursor: pointer;
                     }
 
@@ -224,7 +224,7 @@
             right: 0;
             border: none;
             padding-left: 22px;
-            background: url("#{$base}/pages/activity/common/icon-reset.png") no-repeat 6px center;
+            background: url("#{$base}/common/icon-reset.png") no-repeat 6px center;
             cursor: pointer;
 
             span {
@@ -418,7 +418,7 @@
                 right: 10px;
                 width: 14px;
                 height: 14px;
-                background: url("#{$base}/pages/activity/common/icon-search-small.png") no-repeat;
+                background: url("#{$base}/common/icon-search-small.png") no-repeat;
             }
 
             input {
