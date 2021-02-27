@@ -18,7 +18,10 @@ app.get('/index', (req, res) => {
 });
 
 app.get('/list', (req, res) => {
-  res.render('pages/list')
+  fs.readFile(`${__dirname}/data/filter.json`, (err, data) => {
+    const jsonData = JSON.parse(data);
+    res.render('pages/list', {jsonData});
+  });
 });
 
 app.use(sassMiddleware({
