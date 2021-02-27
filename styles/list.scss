@@ -1,0 +1,98 @@
+@import "./partials/mixin";
+
+body {
+    background-color: #fff;
+}
+
+.activity {
+    &Container {
+        * {
+            font-weight: $normalWeight;
+        }
+
+        img {
+            opacity: 1;
+            transition: all .2s;
+        }
+
+        .lazy {
+            opacity: 0;
+        }
+
+        h1 {
+            @include blind;
+        }
+    }
+
+    &List {
+        &Wrapper {
+            width: 1280px;
+            margin: 0 auto;
+            font-size: 0;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        &Left,
+        &Right {
+            position: relative;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+
+        &Left {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            bottom: auto;
+            width: 200px;
+            box-sizing: border-box;
+            transform: translate3d(0, 0, 0);
+            z-index: 2;
+
+            & + .activityListRight {
+                display: inline-block;
+                width: 1080px;
+                margin-left: 200px;
+                padding-left: 30px;
+            }
+
+            &.relative {
+                position: relative;
+
+                & + .activityListRight {
+                    display: inline-block;
+                    width: 1080px;
+                    margin-left: 0;
+                    padding-left: 30px;
+                }
+            }
+
+            &.fixed {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                width: 1280px;
+                margin: auto;
+                z-index: 0;
+            }
+
+            &.absoluteBottom {
+                position: absolute;
+                top: auto;
+                bottom: 0;
+            }
+        }
+
+        &Right {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+@import "./partials/list";
+@import "./partials/pagination";
+@import "./partials/filter";
+@import "./partials/search";
+@import "./partials/modal";
