@@ -2,10 +2,43 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>Hello World!</title>
-  <link rel="stylesheet" href="./styles/style.css">
+  <title>액티비티-리스트</title>
+  <link rel="stylesheet" href="./styles/list.css">
 </head>
 <body>
-<h1>ejs test</h1>
+<%
+  data = jsonData;
+  base = '/images';
+  dataImage = '/images';
+%>
+<div class="activityContainer">
+  <h1>인터파크 해외이용권 리스트</h1>
+  <!-- 검색영역 + 카테고리 메뉴 S -->
+  <%- include('./partials/_searchForm', {
+  searchType: true
+  }); %>
+  <!-- 검색영역 + 카테고리 메뉴 E -->
+
+  <div class="activityListWrapper">
+    <div class="activityListLeft">
+      <!-- 필터 S -->
+      <%- include('./partials/_filter') %>
+      <!-- 필터 E -->
+    </div>
+    <div class="activityListRight">
+      <!-- 리스트 타이틀 + 정렬 + 태그 S -->
+      <%- include('./partials/_listTitle') %>
+      <!-- 리스트 타이틀 + 정렬 + 태그 E -->
+
+      <!-- 리스트 S -->
+      <%- include('./partials/_list') %>
+      <!-- 리스트 E -->
+    </div>
+  </div>
+  <%- include('./partials/_modal') %>
+</div>
+<script src="./scripts/plugins/jquery-1.12.4.min.js"></script>
+<script src="./scripts/activity.js"></script>
+<script src="./scripts/index.js"></script>
 </body>
 </html>
