@@ -107,7 +107,7 @@
         height: 20px;
         padding: 3px;
         border: none;
-        background: url("#{$base}/pages/activity/common/icon-close.png") no-repeat center center;
+        background: url("#{$base}/common/icon-close.png") no-repeat center center;
         cursor: pointer;
 
         span {
@@ -190,7 +190,7 @@
 
                 &Reset {
                     border: 1px solid #b6bdc7;
-                    background: #fff url("#{$base}/pages/activity/common/icon-reset.png") no-repeat 32px center;
+                    background: #fff url("#{$base}/common/icon-reset.png") no-repeat 32px center;
 
                     span {
                         padding-left: 20px;
