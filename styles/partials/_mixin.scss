@@ -38,7 +38,7 @@ $base: "/images" !default;
     display: inline-block;
     width: 10px;
     height: 14px;
-    background: url("#{$base}/pages/activity/common/arrow-down.png") no-repeat center center;
+    background: url("#{$base}/common/arrow-down.png") no-repeat center center;
     background-size: auto 14px;
     margin-left: 4px;
     vertical-align: $val;
@@ -170,7 +170,7 @@ $base: "/images" !default;
         top: $top;
         width: 50px;
         height: 50px;
-        background: url("#{$base}/pages/activity/common/slide-round-arrow.png") no-repeat;
+        background: url("#{$base}/common/slide-round-arrow.png") no-repeat;
         background-size: 50px auto;
         text-indent: -9999px;
         border-radius: 50px;
@@ -254,7 +254,7 @@ $base: "/images" !default;
                 }
                 width: 12px;
                 height: 10px;
-                background: url("#{$base}/pages/activity/common/icon-check.png") no-repeat;
+                background: url("#{$base}/common/icon-check.png") no-repeat;
                 background-size: 11px auto;
             }
         }
@@ -269,7 +269,7 @@ $base: "/images" !default;
         right: 5px;
         width: 12px;
         height: 6px;
-        background: url("#{$base}/pages/activity/common/arrow-category.png") no-repeat 0 -26px;
+        background: url("#{$base}/common/arrow-category.png") no-repeat 0 -26px;
         background-size: 12px auto;
     }
 }
@@ -305,7 +305,7 @@ $base: "/images" !default;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url("#{$base}/pages/activity/common/icon-heart.png");
+                background-image: url("#{$base}/common/icon-heart.png");
                 background-repeat: no-repeat;
                 background-position: 5px 5px;
                 background-size: 28px auto;
@@ -329,7 +329,7 @@ $base: "/images" !default;
         display: inline-block;
         width: $width * 5;
         height: $height;
-        background: url("#{$base}/pages/activity/common/icon-star-gray.png") repeat-x;
+        background: url("#{$base}/common/icon-star-gray.png") repeat-x;
 
         @for $i from 1 through 5 {
             &[data-star="#{$i}"] {
@@ -349,7 +349,7 @@ $base: "/images" !default;
         i {
             display: inline-block;
             height: $height;
-            background: url("#{$base}/pages/activity/common/icon-star-point.png") repeat-x;
+            background: url("#{$base}/common/icon-star-point.png") repeat-x;
         }
 
     }
