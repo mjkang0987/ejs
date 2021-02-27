@@ -1,0 +1,84 @@
+<div class="listProductWrap">
+  <ul class="listProduct">
+    <%
+      for (var a = 0; a < 3; a++) {
+        data.product.map((p, i) => {
+    %>
+    <li>
+      <span class="productWish">
+        <input type="checkbox" id="productWish<%= (i + 1) + '-' + (a + 1) %>" aria-checked="false">
+        <label for="productWish<%= (i + 1) + '-' + (a + 1) %>">해당 상품 눈여겨보기</label>
+      </span>
+      <a href="#">
+        <span class="productImage">
+          <img
+            src="<%= base %>/common/noimage_277.png"
+            class="lazy"
+            data-src="<%= dataImage %>/list/recommend-product<%= i + 1 %>.png"
+            onerror="this.src='<%= base %>/common/transparent.png'"
+            alt=""
+          >
+        </span>
+        <div class="productInformationWrapper">
+        <% if (p.badge) { %>
+          <ul class="productBadgeList">
+            <% p.badge.map((b) => { %>
+              <li class="productBadge"><%= b %></li>
+            <% }); %>
+          </ul>
+        <% } %>
+          <div class="productInformation">
+            <div class="productTitle"><%= p.title %></div>
+            <div class="productDescriptionWrap">
+              <% if (p.description) { %>
+                <div class="productDescription"><%= p.description %></div>
+              <% } %>
+              <div class="productGuide">
+                <% if (p.location) { %>
+                  <span class="productLocation"><%= p.location %></span>
+                <% } %>
+                <% if (p.category) { %>
+                  <span class="productCategory"><%= p.category %></span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <div class="productPriceWrapper">
+            <div class="productPrice">
+              <em><%= p.discount %></em>
+              <span class="productCurrency">원</span>
+            </div>
+            <div class="productOriginWrapper">
+              <% if (p.origin) { %>
+                <span class="productOrigin">
+                  <em><%= p.origin %></em>
+                  <span class="productCurrency">원</span>
+                </span>
+              <% } %>
+              <% if (p.percent) { %>
+                <span class="productPercent">
+                  <em><%= p.percent %></em>
+                  <span class="productCurrency">%</span>
+                </span>
+              <% } %>
+            </div>
+            <span class="productScore">
+              <span class="productStar" data-star="<%= p.star %>">
+                <i></i>
+              </span>
+              <% if (p.review) { %>
+                <span class="productReview">
+                  <em><%= p.review %>개</em>
+                  <span class="productCurrency">이용후기</span>
+                </span>
+              <% } %>
+            </span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <% }); %>
+  </ul>
+</div>
+  <%- include('./_pagination'); %>
+<% } %>

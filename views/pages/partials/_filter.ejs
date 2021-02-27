@@ -1,0 +1,97 @@
+<div class="filterWrapper">
+  <div class="filterTitle">
+    <h2><span>해외이용권</span> 필터</h2>
+    <button type="button" class="buttonFilterReset">
+      <span>해외이용권 필터 설정</span>초기화
+    </button>
+  </div>
+
+  <div class="filterDirect">
+    <input type="checkbox" id="checkDirect">
+    <label for="checkDirect"><span>해외이용권 </span>즉시사용</label>
+  </div>
+
+  <div class="filterDate">
+    <h3><span>해외이용권 </span>사용날짜</h3>
+    <% var buttonsDate = ['오늘', '내일', '날짜선택']; %>
+    <ul class="dateList">
+      <% buttonsDate.map((d, i) => { %>
+        <li class="<%= i === 0 ? 'active' : '' %>">
+          <button type="button" class="buttonFilterDate<%= i === 2 ? ' buttonSelectDate' : '' %>">
+            <span><%= d %></span>
+          </button>
+        </li>
+      <% }); %>
+    </ul>
+    <div class="layerCalendar">
+      <div class="datepicker"></div>
+    </div>
+  </div>
+
+  <div class="filterLocation active" aria-expanded="true">
+    <h3><span>해외이용권 </span>지역</h3>
+    <button type="button" class="buttonToggle">
+      <span>해외이용권 지역 영역 닫기</span>
+    </button>
+    <div class="filterLocationList">
+      <% data.location.map((l, a) => { %>
+      <div class="filterLocation<%= a + 1 %>">
+        <dl>
+          <dt><%= l.depth1 %></dt>
+          <% l.depth2.map((d, i) => { %>
+            <dd>
+              <input type="checkbox" id="checkLocation<%= (a + 1) + '-' + (i + 1) %>" class="checkCustom">
+              <label for="checkLocation<%= (a + 1) + '-' + (i + 1) %>"><%= d %></label>
+            </dd>
+          <% }); %>
+        </dl>
+      </div>
+      <% }); %>
+    </div>
+    <button type="button" class="buttonMoreLocation">도시 전체보기</button>
+  </div>
+
+  <div class="filterCategory active" aria-expanded="true">
+    <h3><span>해외이용권 </span>카테고리</h3>
+    <button type="button" class="buttonToggle">
+      <span>해외이용권 지역 영역 닫기</span>
+    </button>
+    <div class="filterCategoryList">
+      <% data.category.map((l, a) => { %>
+        <dl>
+          <dt><%= l.depth1 %></dt>
+          <% l.depth2.map((d, i) => { %>
+            <dd>
+              <input type="checkbox" id="checkCategory<%= (a + 1) + '-' + (i + 1) %>" class="checkCustom">
+              <label for="checkCategory<%= (a + 1) + '-' + (i + 1) %>"><%= d %></label>
+            </dd>
+          <% }); %>
+        </dl>
+      <% }); %>
+    </div>
+  </div>
+
+  <div class="filterPrice">
+    <h3><span>해외이용권 </span>가격</h3>
+    <div class="filterSlider"
+         data-range_min="10000"
+         data-range_max="1000000"
+         data-cur_min="10000"
+         data-cur_max="1000000">
+      <div class="filterSliderBar"></div>
+      <div class="gripLeft"></div>
+      <div class="gripRight"></div>
+    </div>
+    <div class="filterSliderRange">
+      <div class="priceMin"></div>
+      <div class="priceMax"></div>
+    </div>
+  </div>
+
+  <div class="filterSearch">
+    <h3><span>해외이용권 </span>결과 내 검색</h3>
+    <label>
+      <input type="search" placeholder="검색어 입력">
+    </label>
+  </div>
+</div>

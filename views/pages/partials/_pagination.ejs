@@ -1,0 +1,13 @@
+<div class="listProductPagination">
+  <ul>
+    <li class="paginationFirst"><a href="javascript:location.reload();">처음으로</a></li>
+    <li class="paginationPrev"><a href="javascript:location.reload();">이전으로</a></li>
+    <% for(var i = 1; i < 11; i++) { %>
+    <li class="<%= i === 1 ? 'active' : '' %>">
+      <a href="javascript:location.reload();"><%= i %></a>
+    </li>
+    <% } %>
+    <li class="paginationNext"><a href="javascript:location.reload();">다음으로</a></li>
+    <li class="paginationLast"><a href="javascript:location.reload();">마지막으로</a></li>
+  </ul>
+</div>

@@ -1,0 +1,48 @@
+<div class="layerWrapper layerLocation">
+  <div class="layerPosition">
+    <div class="layer">
+      <div class="layerTitle">
+        <strong>지역선택</strong>
+        <button type="button" class="buttonCloseLayer">
+          <span>지역선택 레이어 팝업 닫기</span>
+        </button>
+      </div>
+      <div class="layerContentWrapper">
+        <label class="layerSearchFormWrapper">
+          <input type="search" class="layerSearchForm" placeholder="지역을 입력해 주세요.">
+        </label>
+        <div class="layerContent">
+          <% data.location.map((l, a) => { %>
+            <div class="layerFilterLocation<%= a + 1 %>">
+              <div class="layerFilterNation"><%= l.depth1 %><strong>강조된</strong></div>
+              <div class="layerFilterCity">
+                <ul>
+                  <% l.depth2.map((d, i) => { %>
+                    <li>
+                      <input type="checkbox" id="checkLayerLocation<%= (i + 1) + '-' + a %>" class="checkCustom">
+                      <label for="checkLayerLocation<%= (i + 1) + '-' + a %>"><strong>강조된</strong><%= d %></label>
+                    </li>
+                  <% }); %>
+                </ul>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+        <div class="layerButtonWrap">
+          <ul>
+            <li>
+              <button type="button" class="buttonApply">
+                <span>적용</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="buttonReset">
+                <span>초기화</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

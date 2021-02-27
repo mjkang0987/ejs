@@ -1,0 +1,24 @@
+<%
+  var category = [
+      '현지투어',
+      '체험&액티비티',
+      '뷔페&레스토랑',
+      '어트랙션&티켓',
+      '교통수단',
+      'WI-FI&유심',
+      '스파&테라피',
+      '편의서비스'
+  ];
+%>
+<div class="activityCategoryWrapper">
+  <ul class="activityCategory">
+    <!-- 검색, 카테고리 변경 예정에 있으므로 index class 임의 사용 -->
+    <% for(var i = 0; i < category.length; i++) { %>
+      <li class="category<%= i + 1 %>">
+        <a href="#">
+          <span class="categoryName"><%= category[i] %></span>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+</div>
