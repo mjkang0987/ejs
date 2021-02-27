@@ -1,0 +1,650 @@
+@import "./partials/mixin";
+
+body {
+    background-color: #fff;
+}
+
+.activity {
+    &Container {
+        min-width: 1280px;
+
+        &[data-page="main"] {
+            padding-bottom: 90px;
+        }
+
+        h1 {
+            @include blind;
+        }
+
+        .lazy {
+            opacity: 0;
+        }
+
+        img {
+            opacity: 1;
+            transition: opacity .2s;
+        }
+    }
+
+
+    &Category {
+        font-size: 0;
+        text-align: center;
+
+        &Wrapper {
+            width: 1280px;
+            padding: 0 35px;
+            margin: 104px auto 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            display: inline-block;
+            position: relative;
+            width: 98px;
+            margin-left: 20px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            a {
+                display: block;
+                position: relative;
+                padding-top: 75px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    width: 65px;
+                    height: 65px;
+                    border-radius: 70px;
+                    margin-left: -32.5px;
+                    background-color: #f2f2f2;
+                }
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 42px;
+                    height: 42px;
+                    margin-left: -21px;
+                    margin-top: -36px;
+                    background: url("#{$base}/common/category.png") no-repeat center -4px;
+                    background-size: 42px auto;
+                }
+            }
+        }
+
+        .category {
+            &Name {
+                @include text-overflow;
+                width: 100%;
+                font-size: 13px;
+                color: #666;
+            }
+
+            &2 {
+                a {
+                    &:after {
+                        background-position: center -66px;
+                    }
+                }
+            }
+
+            &3 {
+                a {
+                    &:after {
+                        background-position: center -130px;
+                    }
+                }
+            }
+
+            &4 {
+                a {
+                    &:after {
+                        background-position: center -192px;
+                    }
+                }
+            }
+
+            &5 {
+                a {
+                    &:after {
+                        background-position: center -254px;
+                    }
+                }
+            }
+
+            &6 {
+                a {
+                    &:after {
+                        background-position: center -318px;
+                    }
+                }
+            }
+
+            &7 {
+                a {
+                    &:after {
+                        background-position: center -378px;
+                    }
+                }
+            }
+
+            &8 {
+                a {
+                    &:after {
+                        background-position: center -442px;
+                    }
+                }
+            }
+        }
+    }
+
+    &Event {
+        &Wrapper {
+            width: 1280px;
+            margin: 0 auto;
+            font-size: 0;
+        }
+    }
+
+    &Top {
+        &Slide {
+            display: inline-block;
+            width: 782px;
+            vertical-align: top;
+
+            h2 {
+                @include blind;
+            }
+        }
+
+        &Banner {
+            display: inline-block;
+            width: 468px;
+            margin-left: 30px;
+            vertical-align: top;
+
+            li {
+                @include no-image(277);
+                width: 100%;
+                height: 200px;
+                margin-top: 30px;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 200px;
+                }
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    &Slide {
+        &Event {
+            position: relative;
+
+            .slide {
+                overflow: hidden;
+                height: 430px;
+
+                a {
+                    @include no-image(570);
+                    display: block;
+                }
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 430px;
+                }
+            }
+
+            &Indicator {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                background-color: rgba(0, 0, 0, .5);
+                z-index: 10;
+
+                ul {
+                    display: table;
+                    table-layout: fixed;
+                    width: 100%;
+                }
+
+                .slide {
+                    &Indicator {
+                        display: table-cell;
+                        vertical-align: middle;
+                        text-align: center;
+
+                        &.active {
+                            span {
+                                &:after {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        a {
+                            display: block;
+                            box-sizing: border-box;
+                            padding: 0 10px;
+                            line-height: 50px;
+                            color: #fff;
+                            cursor: pointer;
+
+                            span {
+                                @include text-overflow;
+                                max-width: 100%;
+                                position: relative;
+                                vertical-align: middle;
+                                font-size: 16px;
+                                line-height: 18px;
+                                color: #fff;
+
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 1px;
+                                    background-color: #fff;
+                                    opacity: 0;
+                                    transition: all .2s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &Recommend,
+    &Popular,
+    &MD,
+    &Theme {
+        &Wrapper {
+            h2 {
+                font-size: 20px;
+                font-weight: $boldWeight;
+            }
+        }
+    }
+
+    &Recommend,
+    &Popular {
+        &Wrapper {
+            width: 1280px;
+            margin: 90px auto 0;
+        }
+    }
+
+    &Recommend {
+        &Wrapper {
+            h2 {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    &MD {
+        &Wrapper {
+            min-width: 1280px;
+            padding: 60px 0 70px;
+            margin-top: 62px;
+            background-color: #f4f6f9;
+            text-align: center;
+            font-size: 0;
+
+            > div {
+                display: inline-block;
+                position: relative;
+                width: 625px;
+                vertical-align: top;
+                text-align: left;
+
+                &.activityRightWrapper {
+                    margin-left: 30px;
+                }
+            }
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .activitySlide {
+                height: 385px;
+                background-color: #fff;
+
+                a {
+                    position: relative;
+                    padding-bottom: 30px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: 1px solid rgba(78, 78, 78, .2);
+                        box-sizing: border-box;
+                        z-index: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    &Theme {
+        &Wrapper {
+            position: relative;
+            width: 1280px;
+            margin: 70px auto 0;
+            padding-bottom: 50px;
+            font-size: 0;
+
+            & + .activityThemeWrapper {
+                margin-top: 0;
+                padding-top: 50px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #eee;
+                }
+            }
+
+            & + .activityThemeWrapper {
+                .slideCount,
+                .bx-controls-direction {
+                    top: 218px;
+                }
+            }
+        }
+
+        &TitleWrapper {
+            display: inline-block;
+            width: 220px;
+            padding-right: 40px;
+            box-sizing: border-box;
+            vertical-align: top;
+
+            h2 {
+                @include line-clamp(4);
+                height: 124px;
+                line-height: 30px;
+            }
+        }
+    }
+
+    &Slide {
+        &Recommend {
+            position: relative;
+
+            .bx {
+                @include slide-controller-round(74px);
+            }
+
+            .activitySlide {
+                &:hover {
+                    img {
+                        @include over-zoom;
+                    }
+                }
+            }
+
+            .slide {
+                &ImageWrap {
+                    @include no-image(277);
+                    height: 198px;
+                    border-radius: 10px;
+
+                    img {
+                        @include product-image;
+                    }
+                }
+
+                &Title {
+                    @include line-clamp(2);
+                    height: 40px;
+                    margin-top: 20px;
+                    line-height: 19px;
+
+                    strong {
+                        color: #666;
+                        font-weight: $normalWeight;
+                        font-size: 14px;
+                    }
+                }
+
+                &Percent {
+                    .slideCurrency {
+                        &:after {
+                            @include percent-arrow-down(1px);
+                        }
+                    }
+                }
+            }
+        }
+
+        &Popular {
+            position: relative;
+
+            .bx {
+                @include slide-controller-round(120px);
+
+                &-wrapper {
+                    max-width: 1280px !important;
+                }
+
+                &-viewport {
+                    width: 1256px !important;
+                    padding: 20px 12px 0;
+                }
+            }
+
+            .activitySlide {
+                &:hover {
+                    .slideImageWrap {
+                        @include over-shadow;
+                    }
+                }
+            }
+
+            .slide {
+                &ImageWrap {
+                    @include no-image(277);
+                    height: 232px;
+                    border-radius: 232px;
+
+                    &:hover {
+                        @include over-shadow;
+                    }
+
+                    img {
+                        @include design-image;
+                    }
+                }
+
+                &Title {
+                    @include text-overflow;
+                    width: 100%;
+                    margin-top: 20px;
+                    text-align: center;
+
+                    strong {
+                        font-weight: $boldWeight;
+                        font-size: 16px;
+                        text-align: center;
+                        color: #000;
+                    }
+                }
+            }
+        }
+
+        &MD {
+            .bx {
+                @include slide-controller-triangle(0, right, 0);
+            }
+
+            .slide {
+                @include slide-count(2px, right, 50px);
+
+                &ImageWrap {
+                    @include no-image(277);
+                    height: 282px;
+
+                    img {
+                        @include design-image;
+                    }
+                }
+
+                &SubTitle,
+                &Title {
+                    padding: 0 20px;
+                    box-sizing: border-box;
+                }
+
+                &SubTitle {
+                    @include text-overflow;
+                    width: 100%;
+                    margin-top: 25px;
+                    font-size: 14px;
+                    color: #000;
+                    text-align: center;
+                }
+
+                &Title {
+                    @include text-overflow;
+                    width: 100%;
+                    margin-top: 10px;
+                    text-align: center;
+
+                    strong {
+                        font-size: 18px;
+                        color: #000;
+                        font-weight: $boldWeight;
+                    }
+                }
+            }
+        }
+
+        &Theme {
+            display: inline-block;
+            width: 1060px;
+            vertical-align: top;
+
+            .bx {
+                @include slide-controller-triangle(168px, left, 5px);
+            }
+
+            .activitySlide {
+                &:hover {
+                    img {
+                        @include over-zoom;
+                    }
+                }
+            }
+
+            .slide {
+                @include slide-count(168px, left, 56px);
+
+                &Title {
+                    @include line-clamp(2);
+                    height: 40px;
+                    margin-top: 20px;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #666;
+                    font-weight: $boldWeight;
+                }
+
+                &ImageWrap {
+                    @include no-image(200);
+                    height: 188px;
+                    border-radius: 10px;
+
+                    img {
+                        @include product-image;
+                    }
+                }
+            }
+        }
+    }
+
+    &Slide {
+        a {
+            display: block;
+
+            img {
+                display: block;
+            }
+        }
+
+        .slide {
+            &ImageWrap {
+                display: block;
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+            }
+
+            &Price {
+                em,
+                .slideCurrency {
+                    font-size: 20px;
+                    color: #000;
+                    font-weight: $boldWeight;
+                    vertical-align: middle;
+                }
+
+                &Wrapper {
+                    display: table;
+                    margin-top: 15px;
+                    font-size: 0;
+
+                    > span {
+                        display: table-cell;
+                    }
+                }
+            }
+
+            &Percent {
+                padding-left: 10px;
+
+                em,
+                .slideCurrency {
+                    font-size: 20px;
+                    color: #dc941b;
+                    font-weight: $boldWeight;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+
+@import "./partials/search";
