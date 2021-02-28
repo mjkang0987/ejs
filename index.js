@@ -12,11 +12,10 @@ const port = 3000;
 
 const base =  {
   'dist': 'dist',
-  'data': 'data',
   'dir': 'views'
 };
 
-const {dist, data, dir} = base;
+const {dist, dir} = base;
 
 app.set('views', `${__dirname}/views`);
 app.set('view engine', ejs);
