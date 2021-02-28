@@ -104,8 +104,8 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
 
 app.use(sassMiddleware({
   src: path.join(__dirname),
-  dest: path.join(__dirname, 'dist'),
-  debug: true,
+  dest: path.join(__dirname, dist),
+  debug: false,
   outputStyle: 'expanded',
   force: true,
   response: false,
@@ -128,7 +128,7 @@ app.use('/styles', postcssMiddleware({
   ]
 }));
 
-app.use('/styles', express.static(path.join(__dirname, 'dist/styles')));
+app.use('/styles', express.static(path.join(__dirname, dist, '/styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
 app.listen(port, _ => {
