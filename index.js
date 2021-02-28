@@ -32,12 +32,6 @@ const htmlBeautify = {
 app.set(dir, `${__dirname}/${dir}`);
 app.set('view engine', ejs);
 
-app.get('/index', (req, res) => {
-  fs.readFile(`${__dirname}/data/items.json`, (err, data) => {
-    const jsonData = JSON.parse(data);
-    res.render('pages/index', {jsonData});
-  });
-});
 app.get(`/${dir}/**/?*.html`, (req, res, next) => {
   const pathObj = path.parse(req.path);
   const fileState = pathObj.name.split('.');
