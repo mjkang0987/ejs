@@ -134,7 +134,7 @@ app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
-(=' :') ~ server started http://localhost:${port}   
-(,(')(')`);
+(=' :') ~ server started 🔥    
+(,(')(')  http://localhost:${port}/views/pages/index.html`);
 })
 
