@@ -9,6 +9,14 @@ const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
 const port = 3000;
 
+const base =  {
+  'dist': 'dist',
+  'data': 'data',
+  'dir': 'views'
+};
+
+const {dist, data, dir} = base;
+
 app.set('views', `${__dirname}/views`);
 app.set('view engine', ejs);
 
