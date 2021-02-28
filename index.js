@@ -17,7 +17,7 @@ const base =  {
 
 const {dist, dir} = base;
 
-app.set('views', `${__dirname}/views`);
+app.set(dir, `${__dirname}/${dir}`);
 app.set('view engine', ejs);
 
 app.get('/index', (req, res) => {
