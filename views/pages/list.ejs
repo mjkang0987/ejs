@@ -1,4 +1,6 @@
 ---
+data:
+  - /data/filter.json
 ---
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,7 +16,7 @@
 </head>
 <body>
 <%
-  data = jsonData;
+  data = data.filter;
   base = '/images';
   dataImage = '/images';
 %>
