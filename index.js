@@ -3,13 +3,14 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const ejs = require('ejs');
 const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
 const port = 3000;
 
 app.set('views', `${__dirname}/views`);
-app.set('view engine', 'ejs');
+app.set('view engine', ejs);
 
 app.get('/index', (req, res) => {
   fs.readFile(`${__dirname}/data/items.json`, (err, data) => {
