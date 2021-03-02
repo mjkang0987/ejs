@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mjkang0987",
@@ -14,6 +15,8 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "gray-matter": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "js-beautify": "^1.13.5",
     "node-sass": "^5.0.0",
     "node-sass-middleware": "^0.11.0",
