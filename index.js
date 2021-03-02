@@ -110,7 +110,7 @@ app.use(sassMiddleware({
   force: true,
   response: false,
   maxAge: 0,
-  sourceMapEmbed: true,
+  sourceMapEmbed: false,
   includePaths: [
     path.join(__dirname, 'styles')
   ]
