@@ -19,5 +19,8 @@
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.7",
     "postcss-middleware": "^1.1.4"
+  },
+  "devDependencies": {
+    "gulp-ejs": "^5.1.0"
   }
 }
