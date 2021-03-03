@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const scss = require('gulp-sass');
+const del = require('del');
 
 const PATH = {
   HTML: '/views',
@@ -12,6 +13,13 @@ const PATH = {
 };
 
 const {HTML, STYLES, IMAGES, DIST, _HTML, _STYLES, _IMAGES} = PATH
+
+gulp.task('clean', () => {
+  return new Promise(resolve => {
+    del.sync(DIST, {force: true});
+    resolve();
+  });
+});
 gulp.task('styles', () => {
   return new Promise(resolve => {
     const options = {
