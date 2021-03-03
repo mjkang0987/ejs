@@ -2,12 +2,13 @@ const gulp = require('gulp');
 const scss = require('gulp-sass');
 
 const PATH = {
-    IMAGES: './images',
-    STYLE: './styles'
-  },
-  DEST_PATH = {
-    IMAGES: './dist/images',
-    STYLE: './dist/styles'
+  HTML: '/views',
+  STYLES: './styles',
+  IMAGES: './images',
+  DIST: './dist',
+  _HTML: '/views',
+  _STYLES: '/styles',
+  _IMAGES: '/images'
 };
 
 gulp.task('styles', () => {
