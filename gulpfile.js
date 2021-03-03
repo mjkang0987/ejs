@@ -11,6 +11,7 @@ const PATH = {
   _IMAGES: '/images'
 };
 
+const {HTML, STYLES, IMAGES, DIST, _HTML, _STYLES, _IMAGES} = PATH
 gulp.task('styles', () => {
   return new Promise(resolve => {
     const options = {
@@ -20,9 +21,9 @@ gulp.task('styles', () => {
       precision: 8,
       sourceComments: false
     };
-    gulp.src(PATH.STYLE + '/*.scss')
+    gulp.src(`${PATH.STYLES}/*.scss'`)
       .pipe(scss(options))
-      .pipe(gulp.dest(DEST_PATH.STYLE));
+      .pipe(gulp.dest(`${DIST}${_STYLES}`));
     resolve();
   });
 });
