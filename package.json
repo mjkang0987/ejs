@@ -25,5 +25,16 @@
   },
   "devDependencies": {
     "gulp-ejs": "^5.1.0"
+  },
+  "htmlBeautify": {
+    "end_with_newline": true,
+    "unformatted": true,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 0,
+    "indent_inner_html": true,
+    "extra_liners": [],
+    "indent_size": 2,
+    "brace_style": "collapse",
+    "wrap_line_length": 100
   }
 }

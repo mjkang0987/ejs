@@ -8,6 +8,7 @@ const beautify = require('js-beautify');
 const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
+const pkg = require('./package.json');
 const port = 3000;
 
 const base =  {
@@ -16,18 +17,6 @@ const base =  {
 };
 
 const {dist, dir} = base;
-
-const htmlBeautify = {
-  "end_with_newline": true,
-  "unformatted": true,
-  "preserve_newlines": true,
-  "max_preserve_newlines": 0,
-  "indent_inner_html": true,
-  "extra_liners": [],
-  "indent_size": 2,
-  "brace_style": "collapse",
-  "wrap_line_length": 100
-}
 
 app.set(dir, `${__dirname}/${dir}`);
 app.set('view engine', ejs);
@@ -96,7 +85,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
 
       res.set('Content-Type', 'text/html');
       htmlString = ejs.render(fm.content, renderData, ejsOption);
-      beautified = beautify.html(htmlString, htmlBeautify);
+      beautified = beautify.html(htmlString, pkg.htmlBeautify);
       res.end(beautified);
     }
   });
