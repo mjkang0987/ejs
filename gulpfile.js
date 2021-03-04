@@ -33,7 +33,7 @@ gulp.task('styles', () => {
       precision: 8,
       sourceComments: false
     };
-    gulp.src(`${STYLES}/*.scss'`)
+    gulp.src(`${STYLES}/*.scss`)
       .pipe(scss(options))
       .pipe(gulp.dest(`${DIST}${_STYLES}`));
     resolve();
