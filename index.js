@@ -124,6 +124,6 @@ app.listen(port, _ => {
   console.log(`
 (\\_(\\
 (=' :') ~ server started 🔥    
-(,(')(')  http://localhost:${port}/views/pages/index.html`);
+(,(')(')  http://localhost:${port}/views/index.html`);
 })
 
