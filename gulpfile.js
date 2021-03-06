@@ -24,6 +24,16 @@ gulp.task('clean', () => {
     resolve();
   });
 });
+
+gulp.task('html', () => {
+  return new Promise(resolve => {
+    gulp.src(`${HTML}/*.ejs`)
+      .pipe(rename({ extname: '.html' }))
+      .pipe(gulp.dest(`${DIST}${_HTML}`));
+    resolve();
+  });
+});
+
 gulp.task('styles', () => {
   return new Promise(resolve => {
     const options = {
