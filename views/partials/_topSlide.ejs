@@ -1,7 +1,7 @@
 <h2>인터파크 해외이용권 진행중인 이벤트</h2>
 <div class="activitySlideEvent">
   <ul>
-    <% data.eventSlide.map((es, i) => { %>
+    <% data.items.eventSlide.map((es, i) => { %>
       <li class="slide">
         <a href="#">
           <img
@@ -17,7 +17,7 @@
   </ul>
   <div class="activitySlideEventIndicator">
     <ul>
-    <% data.eventIndicator.map((ei, i) => { %>
+    <% data.items.eventIndicator.map((ei, i) => { %>
       <li
         class="slideIndicator<%= i === 0 ? ' active' : '' %>"
         data-slide-index="<%= i %>">

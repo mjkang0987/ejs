@@ -16,7 +16,6 @@ data:
 </head>
 <body>
 <%
-  data = data.items;
   base = '/images';
   dataImage = '/images';
 %>
@@ -57,7 +56,7 @@ data:
     <%- include('./partials/_slide', {
       slideTitle: '‘파리’에서 이런 상품 어떠세요?',
       slideType: 'recommend',
-      data: data.recommend,
+      data: data.items.recommend,
       slideCount: false
     }); %>
   </div>
@@ -68,7 +67,7 @@ data:
     <%- include('./partials/_slide', {
       slideTitle: '인기 여행지 & Hot 액티비티',
       slideType: 'popular',
-      data: data.popular,
+      data: data.items.popular,
       slideCount: false
     }); %>
   </div>
@@ -80,7 +79,7 @@ data:
       <%- include('./partials/_slide', {
         slideTitle: '국내 MD Pick!',
         slideType: 'MD1',
-        data: data.md,
+        data: data.items.md,
         slideCount: true
       }); %>
     </div>
@@ -88,7 +87,7 @@ data:
       <%- include('./partials/_slide', {
         slideTitle: '해외 MD Pick!',
         slideType: 'MD2',
-        data: data.md,
+        data: data.items.md,
         slideCount: true
       }); %>
     </div>
@@ -100,7 +99,7 @@ data:
     <%- include('./partials/_slide', {
       slideTitle: '붐비지 않는 곳으로 여름휴가 준비를 해볼까요?',
       slideType: 'theme1',
-      data: data.theme,
+      data: data.items.theme,
       slideCount: true
     }); %>
   </div>
@@ -111,7 +110,7 @@ data:
     <%- include('./partials/_slide', {
       slideTitle: '파리에서 인테리어가 멋있다고 소문난 레스토랑',
       slideType: 'theme2',
-      data: data.theme,
+      data: data.items.theme,
       slideCount: true
     }); %>
   </div>

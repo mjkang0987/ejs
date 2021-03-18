@@ -34,7 +34,7 @@
       <span>해외이용권 지역 영역 닫기</span>
     </button>
     <div class="filterLocationList">
-      <% data.location.map((l, a) => { %>
+      <% data.filter.location.map((l, a) => { %>
       <div class="filterLocation<%= a + 1 %>">
         <dl>
           <dt><%= l.depth1 %></dt>
@@ -57,7 +57,7 @@
       <span>해외이용권 지역 영역 닫기</span>
     </button>
     <div class="filterCategoryList">
-      <% data.category.map((l, a) => { %>
+      <% data.filter.category.map((l, a) => { %>
         <dl>
           <dt><%= l.depth1 %></dt>
           <% l.depth2.map((d, i) => { %>

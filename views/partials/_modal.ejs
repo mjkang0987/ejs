@@ -12,7 +12,7 @@
           <input type="search" class="layerSearchForm" placeholder="지역을 입력해 주세요.">
         </label>
         <div class="layerContent">
-          <% data.location.map((l, a) => { %>
+          <% data.filter.location.map((l, a) => { %>
             <div class="layerFilterLocation<%= a + 1 %>">
               <div class="layerFilterNation"><%= l.depth1 %><strong>강조된</strong></div>
               <div class="layerFilterCity">
