@@ -71,7 +71,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
       ejsOption.filename = targetPath;
 
       if (fm.data.data && Object.keys(fm.data.data).length) {
-        fm.data.data.forEach(function(filePath) {
+        fm.data.data.forEach((filePath) => {
           const fileName = path.basename(filePath, '.json');
           const fileFullPath = path.join(__dirname, filePath);
           let parsedStr;
@@ -126,4 +126,3 @@ app.listen(port, _ => {
 (=' :') ~ server started 🔥    
 (,(')(')  http://localhost:${port}/views/index.html`);
 })
-
