@@ -16,9 +16,19 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "gray-matter": "^4.0.2",
-    "gulp": "^4.0.2",
-    "gulp-rename": "^2.0.0",
+    "gulp": "4.0.2",
+    "gulp-data": "1.3.1",
+    "gulp-ejs": "5.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-front-matter": "1.3.0",
+    "gulp-htmlhint": "4.0.0",
+    "gulp-lint": "0.0.1",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-pluck": "0.0.4",
+    "gulp-prettify": "0.5.0",
+    "gulp-rename": "2.0.0",
     "gulp-sass": "^4.1.0",
+    "gulp-sass-lint": "^1.4.0",
     "gulp-uglify": "^3.0.2",
     "js-beautify": "^1.13.5",
     "node-sass": "^5.0.0",
@@ -26,8 +36,127 @@
     "nodemon": "^2.0.7",
     "postcss-middleware": "^1.1.4"
   },
-  "devDependencies": {
-    "gulp-ejs": "^5.1.0"
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "jquery": true
+    },
+    "rules": {
+      "strict": "off",
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "brace-style": [
+        "error",
+        "1tbs"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "one-var": [
+        "error",
+        "never"
+      ],
+      "comma-style": [
+        "error",
+        "last"
+      ],
+      "curly": [
+        "error",
+        "all"
+      ],
+      "eqeqeq": [
+        "error",
+        "allow-null"
+      ],
+      "key-spacing": [
+        "error",
+        {
+          "beforeColon": false,
+          "afterColon": true
+        }
+      ],
+      "comma-spacing": [
+        "error",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "space-before-blocks": [
+        "error",
+        "always"
+      ],
+      "space-in-parens": [
+        "error",
+        "never"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "no-trailing-spaces": "error",
+      "no-multi-spaces": [
+        "error",
+        {
+          "ignoreEOLComments": true
+        }
+      ],
+      "keyword-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "padded-blocks": [
+        "error",
+        "never"
+      ]
+    }
+  },
+  "htmlhint": {
+    "tagname-lowercase": true,
+    "attr-lowercase": [
+      "viewBox"
+    ],
+    "attr-value-double-quotes": true,
+    "attr-value-not-empty": false,
+    "attr-no-duplication": true,
+    "doctype-first": true,
+    "tag-pair": true,
+    "tag-self-close": false,
+    "spec-char-escape": true,
+    "id-unique": true,
+    "src-not-empty": true,
+    "title-require": true,
+    "head-script-disabled": false,
+    "alt-require": true,
+    "doctype-html5": false,
+    "id-class-value": false,
+    "style-disabled": false,
+    "inline-script-disabled": false,
+    "inline-style-disabled": false,
+    "space-tab-mixed-disabled": "space",
+    "id-class-ad-disabled": true,
+    "href-abs-or-rel": false,
+    "attr-unsafe-chars": true
   },
   "htmlBeautify": {
     "end_with_newline": true,
