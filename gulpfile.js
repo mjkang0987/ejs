@@ -10,6 +10,7 @@ const eslint = require('gulp-eslint');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const pluck = require('gulp-pluck');
+const babel = require('gulp-babel');
 const del = require('del');
 const fs = require('fs');
 const pkg = require('./package.json');
@@ -162,6 +163,7 @@ const scripts = _ => {
       cwd: path.join(SCRIPTS)
     })
     .pipe(eslint())
+    .pipe(babel())
     .pipe(eslint.format())
     .pipe(uglify({mangle: true}))
     .pipe(gulp.dest(path.join(DIST, SCRIPTS)));
