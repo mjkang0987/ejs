@@ -9,7 +9,7 @@ const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
 const pkg = require('./package.json');
-const port = 3000;
+const port = pkg.port;
 
 const base =  {
   'dist': 'dist',
