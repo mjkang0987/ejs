@@ -10,8 +10,19 @@ const postcssMiddleware = require('postcss-middleware');
 const autoprefixer = require('autoprefixer');
 const pkg = require('./package.json');
 const port = pkg.port;
+const os = require('os');
+const interfaces = os.networkInterfaces();
+const ips = Object.keys(interfaces);
+let localIP;
 
-const base =  {
+ips.map(ip => {
+  interfaces[ip].filter(_ip => {
+    if (_ip.family === 'IPv4' && _ip.internal === false) {
+      localIP = _ip.address;
+    }
+  });
+});
+
 const base = {
   'dist': 'dist',
   'dir' : 'views'
@@ -125,5 +136,5 @@ app.listen(port, _ => {
   console.log(`
 (\\_(\\
 (=' :') ~ server started 🔥    
-(,(')(')  http://localhost:${port}/views/index.html`);
-})
+(,(')(')  http://${localIP}:${port}`);
+});
