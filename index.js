@@ -37,7 +37,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
   const pathObj = path.parse(req.path);
   const fileState = pathObj.name.split('.');
   const targetFile = fileState[0];
-  const targetPath = path.join(__dirname, pathObj.dir, targetFile + '.ejs');
+  const targetPath = path.join(__dirname, 'src', pathObj.dir, targetFile + '.ejs');
   const ejsOption = {
     root              : path.join(__dirname, dir),
     outputFunctionName: 'echo'
@@ -104,8 +104,9 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
 });
 
 app.use(sassMiddleware({
-  src           : path.join(__dirname),
-  dest          : path.join(__dirname, dist),
+  src           : path.join(__dirname, 'src/styles'),
+  dest          : path.join(__dirname, 'dist/styles'),
+  prefix        : '/styles',
   debug         : false,
   outputStyle   : 'expanded',
   force         : true,
@@ -113,25 +114,32 @@ app.use(sassMiddleware({
   maxAge        : 0,
   sourceMapEmbed: false,
   includePaths  : [
-    path.join(__dirname, 'styles')
+    path.join(__dirname, 'src/styles')
   ]
 }));
 
 app.use('/styles', postcssMiddleware({
   src    : (req) => {
-    return path.join(__dirname, req.path);
+    return path.join(__dirname, 'styles', req.url);
   },
   plugins: [
     autoprefixer({
       remove : false,
       cascade: false
-    })
+    }),
+    (root) => {
+      const first = root.first;
+      const hasCharset = first.type === 'atrule' && first.name === 'charset';
+      if (!hasCharset) {
+        root.prepend(first);
+      }
+    }
   ]
 }));
 
-app.use('/styles', express.static(path.join(__dirname, dist, '/styles')));
+app.use('/styles', express.static(path.join(__dirname, dist, 'styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
+app.use('/scripts', express.static(path.join(__dirname, 'src/scripts')));
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
