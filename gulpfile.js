@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const ejs = require('gulp-ejs');
 const gulpData = require('gulp-data');
 const prettify = require('gulp-prettify');
-const frontMatter = require('gulp-front-matter')
+const frontMatter = require('gulp-front-matter');
 const htmlHint = require('gulp-htmlhint');
 const scss = require('gulp-sass');
 const eslint = require('gulp-eslint');
@@ -16,12 +16,12 @@ const fs = require('fs');
 const pkg = require('./package.json');
 
 const PATH = {
-  HTML: 'views',
-  STYLES: 'styles',
-  IMAGES: 'images',
-  SCRIPTS: 'scripts',
-  JSON: 'data',
-  DIST: 'dist'
+  HTML   : 'src/views',
+  STYLES : 'src/styles',
+  IMAGES : 'images',
+  SCRIPTS: 'src/scripts',
+  JSON   : 'data',
+  DIST   : 'dist'
 };
 
 const {HTML, STYLES, IMAGES, SCRIPTS, JSON, DIST} = PATH;
@@ -30,7 +30,7 @@ const html = _ => {
   const _prettier = pkg.htmlBeautify;
   const _frontMatter = {
     property: 'fm',
-    remove: true
+    remove  : true
   };
   const htmlLint = pkg.htmlhint;
   const _rename = {extname: '.html'};
@@ -46,7 +46,8 @@ const html = _ => {
       .replace(/\.[^/\\.]+$/, '')
       .split(path.sep)
       .join('/');
-    const isPartialPage = path.basename(srcPath).substring(0, 2) === '__';
+    const isPartialPage = path.basename(srcPath)
+      .substring(0, 2) === '__';
 
     if (dataPaths) {
       if (!Array.isArray(dataPaths)) {
@@ -97,7 +98,7 @@ const html = _ => {
           loadData
         },
         {
-          root: path.join(__dirname, HTML),
+          root              : path.join(__dirname, HTML),
           outputFunctionName: 'echo'
         }))
       .pipe(rename(_rename));
@@ -113,26 +114,26 @@ const html = _ => {
 
     if (isPartialPage) {
       _gulp = _gulp
-        .pipe(rename( path => {
+        .pipe(rename(path => {
           path.basename = path.basename.replace(/^__/, '');
         }));
     }
 
-    _gulp.pipe(gulp.dest(path.join(DIST, HTML)))
+    _gulp.pipe(gulp.dest(path.join(DIST, HTML)));
 
     return _gulp;
   };
 
   return gulp
     .src([
-      '*/*.ejs',
+      '*/*/*.ejs',
       path.join('!' + HTML, '_!(_)*.ejs'),
       path.join('!' + HTML, 'components/*.ejs')
     ])
     .pipe(frontMatter(_frontMatter))
     .pipe(gulpData(generatePages))
     .pipe(pluck('fm'));
-}
+};
 
 const clean = _ => {
   return del(DIST, {force: true});
@@ -140,10 +141,10 @@ const clean = _ => {
 
 const styles = _ => {
   const options = {
-    outputStyle: 'nested',
-    indentType: 'space',
-    indentWidth: 4,
-    precision: 8,
+    outputStyle   : 'nested',
+    indentType    : 'space',
+    indentWidth   : 4,
+    precision     : 8,
     sourceComments: false
   };
   return gulp
