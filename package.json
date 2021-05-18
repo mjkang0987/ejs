@@ -9,6 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mjkang0987",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mjkang0987/ejs.git"
+  },
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.4",
