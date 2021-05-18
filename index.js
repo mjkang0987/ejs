@@ -12,8 +12,9 @@ const pkg = require('./package.json');
 const port = pkg.port;
 
 const base =  {
+const base = {
   'dist': 'dist',
-  'dir': 'views'
+  'dir' : 'views'
 };
 
 const {dist, dir} = base;
@@ -27,7 +28,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
   const targetFile = fileState[0];
   const targetPath = path.join(__dirname, pathObj.dir, targetFile + '.ejs');
   const ejsOption = {
-    root: path.join(__dirname, dir),
+    root              : path.join(__dirname, dir),
     outputFunctionName: 'echo'
   };
 
@@ -63,8 +64,8 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
     } else {
       fm = matter(data.toString());
       renderData = {
-        page: fm.data,
-        data: {},
+        page    : fm.data,
+        data    : {},
         loadData: loadData
       };
 
@@ -89,29 +90,29 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
       res.end(beautified);
     }
   });
-})
+});
 
 app.use(sassMiddleware({
-  src: path.join(__dirname),
-  dest: path.join(__dirname, dist),
-  debug: false,
-  outputStyle: 'expanded',
-  force: true,
-  response: false,
-  maxAge: 0,
+  src           : path.join(__dirname),
+  dest          : path.join(__dirname, dist),
+  debug         : false,
+  outputStyle   : 'expanded',
+  force         : true,
+  response      : false,
+  maxAge        : 0,
   sourceMapEmbed: false,
-  includePaths: [
+  includePaths  : [
     path.join(__dirname, 'styles')
   ]
 }));
 
 app.use('/styles', postcssMiddleware({
-  src: (req) => {
+  src    : (req) => {
     return path.join(__dirname, req.path);
   },
   plugins: [
     autoprefixer({
-      remove: false,
+      remove : false,
       cascade: false
     })
   ]
