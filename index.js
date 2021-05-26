@@ -24,11 +24,12 @@ ips.map(ip => {
 });
 
 const base = {
-  'dist': 'dist',
-  'dir' : 'views'
+  src: 'src',
+  dist: 'dist',
+  dir : 'views'
 };
 
-const {dist, dir} = base;
+const {src, dist, dir} = base;
 
 app.set(dir, `${__dirname}/${dir}`);
 app.set('view engine', ejs);
@@ -104,7 +105,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
 });
 
 app.use(sassMiddleware({
-  src           : path.join(__dirname, 'src/styles'),
+  src           : path.join(__dirname, src, '/styles'),
   dest          : path.join(__dirname, 'dist/styles'),
   prefix        : '/styles',
   debug         : false,
@@ -114,7 +115,7 @@ app.use(sassMiddleware({
   maxAge        : 0,
   sourceMapEmbed: false,
   includePaths  : [
-    path.join(__dirname, 'src/styles')
+    path.join(__dirname, src, '/styles')
   ]
 }));
 
@@ -139,7 +140,7 @@ app.use('/styles', postcssMiddleware({
 
 app.use('/styles', express.static(path.join(__dirname, dist, 'styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/scripts', express.static(path.join(__dirname, 'src/scripts')));
+app.use('/scripts', express.static(path.join(__dirname, src, '/scripts')));
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
