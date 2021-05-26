@@ -30,7 +30,7 @@ app.get(`/${dir}/**/?*.html`, (req, res, next) => {
   const pathObj = path.parse(req.path);
   const fileState = pathObj.name.split('.');
   const targetFile = fileState[0];
-  const targetPath = path.join(__dirname, 'src', pathObj.dir, targetFile + '.ejs');
+  const targetPath = path.join(__dirname, src, pathObj.dir, targetFile + '.ejs');
   const ejsOption = {
     root              : path.join(__dirname, dir),
     outputFunctionName: 'echo'
