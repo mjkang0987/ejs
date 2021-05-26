@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 const ejs = require('ejs');
+const glob = require('glob');
 const beautify = require('js-beautify');
 const sassMiddleware = require('node-sass-middleware');
 const postcssMiddleware = require('postcss-middleware');
@@ -26,7 +27,90 @@ const {src, dist, dir} = base;
 app.set(dir, `${__dirname}/${dir}`);
 app.set('view engine', ejs);
 
-app.get(`/${dir}/**/?*.html`, (req, res, next) => {
+app.get('/', (req, res, next) => {
+  const indexPath = path.join(src, 'index.ejs');
+  const fm = matter.read(indexPath);
+  const {data: fmData, content: fmContent} = fm;
+  const {groups: fmGroups} = fmData;
+  const keysGroups = Object.keys(fmGroups);
+
+  const ejsOption = {
+    root              : src,
+    outputFunctionName: 'echo'
+  };
+
+  const pages = glob.sync(dir + '/**/**/[^_]*.ejs', {
+    cwd   : src,
+    nosort: true,
+    nodir : true
+  });
+
+  const indexData = {
+    pkgInfo: pkg,
+    list   : keysGroups.reduce((obj, group) => {
+      obj[group] = {
+        name : fmGroups[group],
+        pages: []
+      };
+
+      return obj;
+    }, {})
+  };
+
+  pages.forEach(page => {
+    const pathObj = path.parse(page);
+    const fullPath = path.join(src, page);
+    const srcPath = '/' + pathObj.dir + '/' + pathObj.name;
+    const token = srcPath.replace(/\//g, '-').slice(1);
+    const pageFm = matter.read(fullPath);
+    const {data: fmData} = pageFm;
+    const {name: fmName, group: fmGroup, state} = fmData;
+    const states = Object.assign({
+      'default': fmName + ' 기본'
+    }, (state || {}));
+
+
+    if (!fmGroup || !fmGroup in indexData.list || !indexData.list[fmGroup]) {
+      return;
+    }
+
+    const pageData = Object.keys(states).reduce((before, state) => {
+      const isDefault = state === 'default';
+      const isUnexposedPage = states[state][0] === '_';
+      const stateName = isUnexposedPage ? states[state].substr(1) : states[state];
+
+      const stateData = {
+        text     : stateName,
+        token    : token,
+        href     : srcPath,
+        unexposed: isUnexposedPage
+      };
+
+      if (!isDefault) {
+        stateData.token += `-${state}`;
+        stateData.href += `.${state}`;
+      }
+
+      stateData.href += '.html';
+      before.states = before.states.concat(stateData);
+
+
+      return before;
+    }, {
+      states: []
+    });
+
+    pageData.name = fmName;
+    pageData.path = srcPath;
+    indexData.list[fmGroup].pages.push(pageData);
+  });
+
+  const render = ejs.render(fmContent, indexData, ejsOption);
+  const beautified = beautify.html(render, pkg.htmlBeautify);
+  res.end(beautified);
+});
+
+app.get(`/views/**/?*.html`, function(req, res, next) {
   const pathObj = path.parse(req.path);
   const fileState = pathObj.name.split('.');
   const targetFile = fileState[0];
