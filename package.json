@@ -10,8 +10,8 @@
   },
   "author": "mjkang0987",
   "repository": {
-    "type": "git",
-    "url": "git@github.com:mjkang0987/ejs.git"
+    "type": "https",
+    "url": "https://github.com/mjkang0987/ejs.git"
   },
   "port": 8080,
   "license": "ISC",
