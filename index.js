@@ -15,14 +15,6 @@ const interfaces = os.networkInterfaces();
 const ips = Object.keys(interfaces);
 let localIP;
 
-ips.map(ip => {
-  interfaces[ip].filter(_ip => {
-    if (_ip.family === 'IPv4' && _ip.internal === false) {
-      localIP = _ip.address;
-    }
-  });
-});
-
 const base = {
   src: 'src',
   dist: 'dist',
@@ -141,6 +133,15 @@ app.use('/styles', postcssMiddleware({
 app.use('/styles', express.static(path.join(__dirname, dist, 'styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/scripts', express.static(path.join(__dirname, src, '/scripts')));
+
+ips.map(ip => {
+  interfaces[ip].filter(_ip => {
+    if (_ip.family === 'IPv4' && _ip.internal === false) {
+      localIP = _ip.address;
+    }
+  });
+});
+
 app.listen(port, _ => {
   console.log(`
 (\\_(\\
