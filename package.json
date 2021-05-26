@@ -1,7 +1,7 @@
 {
-  "name": "ejs-test",
+  "name": "EJS-BOILERPLATE",
   "version": "0.0.0",
-  "description": "ejs test",
+  "description": "ejs boilerplate setting repository",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
