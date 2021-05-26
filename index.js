@@ -144,7 +144,7 @@ ips.map(ip => {
 
 app.listen(port, _ => {
   console.log(`
-(\\_(\\
-(=' :') ~ server started 🔥    
-(,(')(')  http://${localIP}:${port}`);
+(\\_(\\   ~ server started 🔥
+(=' :')   http://${localIP}:${port}   
+(,(')(')  http://localhost:${port}`);
 });
