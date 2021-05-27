@@ -18,120 +18,107 @@ groups:
 </head>
 
 <body>
-<div class="container">
-  <div
-    id="asideCol"
-    class="asideCol col">
-
-    <div class="projectInfo expanded">
-      <div class="avatar">
+<main class="preview">
+  <aside
+    class="aside">
+    <div class="repo-info expanded">
+      <button
+        type="button"
+        class="btn-toggle">
+        <span>toggle</span>
+      </button>
+      <div class="repo-avatar">
         <img
           src="/images/index/avatar.svg"
           alt="<%= pkgInfo.name %>">
       </div>
-
       <h1>
         <a
           href="<%- pkgInfo.repository.url %>"
-          target="_blank"><%= pkgInfo.name %></a>
+          target="_blank">
+          <%= pkgInfo.name %>
+        </a>
       </h1>
-
-      <p class="description"><%= pkgInfo.description %></p>
-
-      <div class="search">
+      <p class="repo-desc"><%= pkgInfo.description %></p>
+    </div>
+    <div class="page-wrap">
+      <div class="page-search">
         <label>
           <input
-            id="searchInput"
+            class="input-search"
             type="search"
-            placeholder="Search"
             required>
         </label>
       </div>
-
-      <div class="viewToggler">
-        <button
-          type="button"
-          class="viewToggleButton">
-          <span>toggle</span>
-        </button>
+      <div class="page-scroll">
+        <%
+        const groups = Object.keys(list);
+        groups.map(g => { %>
+          <div
+            class="page-group-wrap"
+            data-depth="0">
+            <strong class="groups-name"><%= list[g].name %></strong>
+            <ul class="page-groups">
+              <%
+                if (list[g].pages.length > 0) {
+                  list[g].pages.map(page => {
+              %>
+                <li data-depth="1">
+                  <strong
+                    data-path="<%= page.path %>"
+                    class="page-name">
+                    <%= page.name %>
+                  </strong>
+                  <ul>
+                  <% page.states.map(state => { %>
+                    <li
+                      data-depth="2">
+                      <a
+                        href="<%- state.href %>"
+                        title="<%= `${page.name}-${state.text}` %>"
+                        data-group="<%= list[g].name %>"
+                        data-token="<%- state.token %>"
+                        class="page-state">
+                        <%= state.text %>
+                      </a>
+                    </li>
+                  <% }); %>
+                  </ul>
+                </li>
+              <%
+                  });
+                } else {
+              %>
+                <li class="page-none">페이지가 없습니다.</li>
+              <% } %>
+            </ul>
+          </div>
+        <% }); %>
       </div>
     </div>
-
-    <div class="pages">
-      <div class="asideWrapper">
-
-        <% for (const fmGroup in list) { %>
-          <% if (list[fmGroup].pages) { %>
-            <div
-              class="group"
-              data-search-level="0">
-              <h3><%= list[fmGroup].name %></h3>
-              <ul>
-                <% list[fmGroup].pages.forEach((page) => { %>
-                  <li data-search-level="1">
-                        <span
-                          title="<%= page.path %>"
-                          class="pageName">
-                            <%= page.name %>
-                        </span>
-
-                    <% if (page.states.length) { %>
-                      <ul>
-                        <% page.states.forEach((state) => { %>
-                          <li
-                            <%- state.unexposed ? 'class="unexposed"' : '' %>
-                            data-search-level="2">
-                            <a
-                              href="<%- state.href %>"
-                              title="<%= page.name + ' - ' + state.text %>"
-                              data-group-name="<%= list[fmGroup].name %>"
-                              data-token="<%- state.token %>">
-                              <%= state.text %>
-                            </a>
-                          </li>
-                        <% }) %>
-                      </ul>
-                    <% } %>
-
-                  </li>
-                <% }) %>
-              </ul>
-            </div>
-          <% } %>
-        <% } %>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="splitter col"></div>
-
-  <div class="contentCol col">
-    <div class="contentHeader">
+  </aside>
+  <div class="move-point"></div>
+  <div class="preview">
+    <div class="preview-info">
       <div
-        id="pageTitle"
-        class="pageTitle">
+        class="preview-title">
         <h2>
-          <span class="groupName"></span> -
-          <span class="pageName"></span>
+          <span class="preview-page"></span>
+          <span class="preview-state"></span>
         </h2>
-        <p class="url">&nbsp;</p>
+        <span class="preview-url"></span>
       </div>
-
-      <div class="mainHeaderLink">
-        <a
-          id="viewOrigin"
-          href="#"
-          class="openWithNewWindow"
-          target="_blank">new window</a>
-      </div>
+      <a
+        href="#"
+        class="link-new"
+        target="_blank">WINDOW OPEN</a>
     </div>
 
     <iframe
       id="contentFrame"
       class="frame"></iframe>
   </div>
-</div>
+</main>
 
 <!--<script src="/scripts/libs/jquery/jquery.min.js"></script>-->
 <!--<script src="/scripts/index/index.js"></script>-->
