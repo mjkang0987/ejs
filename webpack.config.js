@@ -3,8 +3,6 @@ const glob = require('glob-all');
 const {CleanWebpackPlugin: cleanWebpackPlugin} = require('clean-webpack-plugin');
 const uglifyPlugin = require('uglifyjs-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
-const pkg = require('./package.json');
 
 const PATH = {
   HTML   : 'views',
