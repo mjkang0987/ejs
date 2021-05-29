@@ -1,8 +1,8 @@
-@import "../partials/mixin";
-
 body {
     background-color: #fff;
 }
+
+@import "./partials/mixin";
 
 .activity {
     &Container {
@@ -647,4 +647,4 @@ body {
     }
 }
 
-@import "../partials/search";
+@import "./partials/search";

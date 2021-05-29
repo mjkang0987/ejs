@@ -1,6 +1,6 @@
 $normalWeight: 300;
 $boldWeight: 500;
-$base: "/images" !default;
+$base: "../../../images" !default;
 
 @mixin blind {
     position: absolute;
