@@ -5,16 +5,15 @@ const uglifyPlugin = require('uglifyjs-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PATH = {
-  HTML   : 'views',
+  VIEWS  : 'views',
   STYLES : 'styles',
   SCRIPTS: 'scripts',
   IMG    : 'images',
   DIST   : 'dist',
-  SRC    : 'src',
-  VIEWS  : 'views'
+  SRC    : 'src'
 };
 
-const {HTML, STYLES, SCRIPTS, IMG, DIST, SRC, VIEW} = PATH;
+const {STYLES, SCRIPTS, IMG, DIST, SRC, VIEWS} = PATH;
 
 const entries = glob.sync([
   `${SCRIPTS}/[^plugins]*/*.js`,
@@ -77,7 +76,7 @@ module.exports = {
           {
             loader : 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: true
             },
           },
         ],
@@ -87,22 +86,19 @@ module.exports = {
         loader : 'url-loader',
         options: {
           name : `${IMG}/[hash].[ext]`,
-          limit: 10000,
+          limit: 10000
         }
       },
       {
         test   : /\.js$/,
         exclude: /node_modules/,
-        loader : 'eslint-loader',
-        options: {
-          // eslint options (if necessary)
-        }
+        loader : 'eslint-loader'
       },
     ]
   },
   resolve: {
     modules   : ['node_modules'],
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.scss']
   },
   plugins: [
     new cleanWebpackPlugin({
@@ -118,5 +114,5 @@ module.exports = {
       chunkFilename: '[id][hash].css',
       ignoreOrder  : false,
     }),
-  ],
+  ]
 };
