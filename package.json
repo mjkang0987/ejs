@@ -4,8 +4,11 @@
   "description": "ejs boilerplate setting repository",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "build": "webpack",
+    "start": "nodemon --exec babel-node index.js",
+    "clear": "del-cli --force dist/scripts",
+    "build:dev": "yarn run clear && babel src/scripts -d dist/src/scripts",
+    "start:dev": "nodemon --exec \"yarn run build:dev && node index.js\" -e js --ignore dist/",
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mjkang0987",
@@ -17,8 +20,10 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.6",
+    "babel-watch": "^7.4.1",
     "del": "^6.0.0",
     "del-cli": "^3.0.1",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "glob": "^7.1.7",
