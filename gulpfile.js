@@ -170,31 +170,13 @@ const scripts = _ => {
     .pipe(gulp.dest(path.join(DIST, SCRIPTS)));
 };
 
-const json = _ => {
-  return gulp
-    .src('**/*.json', {
-      cwd: path.join(JSON)
-    })
-    .pipe(gulp.dest(path.join(DIST, JSON)));
-};
-
-const images = _ => {
-  return gulp
-    .src('**/*.{png,jpg,jpeg,gif,svg,ico}', {
-      cwd: path.join(IMAGES)
-    })
-    .pipe(gulp.dest(path.join(DIST, IMAGES)));
-};
-
 const tasks = {
   normal: gulp.series(
     clean,
     gulp.parallel(
       html,
       styles,
-      scripts,
-      images,
-      json
+      scripts
     )
   )
 };
