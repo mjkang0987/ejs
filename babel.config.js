@@ -12,7 +12,7 @@ const presets = [
       target: ['web', 'es5'],
       corejs          : 3,
       useBuiltIns     : 'usage',
-      modules         : false,
+      modules         : true,
       shippedProposals: true
     },
   ],

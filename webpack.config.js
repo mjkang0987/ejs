@@ -5,7 +5,6 @@ const uglifyPlugin = require('uglifyjs-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PATH = {
-  VIEWS  : 'views',
   STYLES : 'styles',
   SCRIPTS: 'scripts',
   IMG    : 'images',
@@ -13,10 +12,10 @@ const PATH = {
   SRC    : 'src'
 };
 
-const {STYLES, SCRIPTS, IMG, DIST, SRC, VIEWS} = PATH;
+const {STYLES, SCRIPTS, IMG, DIST, SRC} = PATH;
 
 const entries = glob.sync([
-  `${SCRIPTS}/[^plugins]*/*.js`,
+  `${SCRIPTS}/**/*.js`,
   `${STYLES}/**/[^_]*.scss`
 ], {
   cwd   : SRC,
@@ -92,8 +91,8 @@ module.exports = {
       {
         test   : /\.js$/,
         exclude: /node_modules/,
-        loader : 'eslint-loader'
-      },
+        use    : ['eslint-loader']
+      }
     ]
   },
   resolve: {
@@ -112,7 +111,7 @@ module.exports = {
     new miniCssExtractPlugin({
       filename     : '[id].css',
       chunkFilename: '[id][hash].css',
-      ignoreOrder  : false,
-    }),
+      ignoreOrder  : false
+    })
   ]
 };
