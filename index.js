@@ -17,30 +17,30 @@ const ips = Object.keys(interfaces);
 let localIP;
 
 const base = {
-  src: 'src',
-  dist: 'dist',
-  dir : 'views'
+  SRC : 'src',
+  DIST: 'dist',
+  DIR : 'views'
 };
 
-const {src, dist, dir} = base;
+const {SRC, DIST, DIR} = base;
 
-app.set(dir, `${__dirname}/${dir}`);
+app.set(DIR, `${__dirname}/${DIR}`);
 app.set('view engine', ejs);
 
 app.get('/', (req, res, next) => {
-  const indexPath = path.join(src, 'index.ejs');
+  const indexPath = path.join(SRC, 'index.ejs');
   const fm = matter.read(indexPath);
   const {data: fmData, content: fmContent} = fm;
   const {groups: fmGroups} = fmData;
   const keysGroups = Object.keys(fmGroups);
 
   const ejsOption = {
-    root              : src,
+    root              : SRC,
     outputFunctionName: 'echo'
   };
 
-  const pages = glob.sync(dir + '/**/**/[^_]*.ejs', {
-    cwd   : src,
+  const pages = glob.sync(DIR + '/**/**/[^_]*.ejs', {
+    cwd   : SRC,
     nosort: true,
     nodir : true
   });
@@ -59,7 +59,7 @@ app.get('/', (req, res, next) => {
 
   pages.forEach(page => {
     const pathObj = path.parse(page);
-    const fullPath = path.join(src, page);
+    const fullPath = path.join(SRC, page);
     const srcPath = '/' + pathObj.dir + '/' + pathObj.name;
     const token = srcPath.replace(/\//g, '-').slice(1);
     const pageFm = matter.read(fullPath);
@@ -110,13 +110,13 @@ app.get('/', (req, res, next) => {
   res.end(beautified);
 });
 
-app.get(`/views/**/?*.html`, function(req, res, next) {
+app.get(`/views/**/?*.html`, (req, res, next) => {
   const pathObj = path.parse(req.path);
   const fileState = pathObj.name.split('.');
   const targetFile = fileState[0];
-  const targetPath = path.join(__dirname, src, pathObj.dir, targetFile + '.ejs');
+  const targetPath = path.join(__dirname, SRC, pathObj.dir, targetFile + '.ejs');
   const ejsOption = {
-    root              : path.join(__dirname, dir),
+    root              : path.join(__dirname, DIR),
     outputFunctionName: 'echo'
   };
 
@@ -181,8 +181,8 @@ app.get(`/views/**/?*.html`, function(req, res, next) {
 });
 
 app.use(sassMiddleware({
-  src           : path.join(__dirname, src, '/styles'),
-  dest          : path.join(__dirname, 'dist/styles'),
+  src           : path.join(__dirname, SRC, '/styles'),
+  dest          : path.join(__dirname, DIST, '/styles'),
   prefix        : '/styles',
   debug         : false,
   outputStyle   : 'expanded',
@@ -191,7 +191,7 @@ app.use(sassMiddleware({
   maxAge        : 0,
   sourceMapEmbed: false,
   includePaths  : [
-    path.join(__dirname, src, '/styles')
+    path.join(__dirname, SRC, '/styles')
   ]
 }));
 
@@ -214,9 +214,9 @@ app.use('/styles', postcssMiddleware({
   ]
 }));
 
-app.use('/styles', express.static(path.join(__dirname, dist, '/styles')));
+app.use('/styles', express.static(path.join(__dirname, DIST, '/styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/scripts', express.static(path.join(__dirname, src, '/scripts')));
+app.use('/scripts', express.static(path.join(__dirname, DIST, '/scripts')));
 
 ips.map(ip => {
   interfaces[ip].filter(_ip => {
