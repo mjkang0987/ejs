@@ -182,7 +182,7 @@ app.get(`/views/**/?*.html`, (req, res, next) => {
 
 app.use(sassMiddleware({
   src           : path.join(__dirname, SRC, '/styles'),
-  dest          : path.join(__dirname, DIST, '/styles'),
+  dest          : path.join(__dirname, DIST, SRC, '/styles'),
   prefix        : '/styles',
   debug         : false,
   outputStyle   : 'expanded',
@@ -214,9 +214,9 @@ app.use('/styles', postcssMiddleware({
   ]
 }));
 
-app.use('/styles', express.static(path.join(__dirname, DIST, '/styles')));
+app.use('/styles', express.static(path.join(__dirname, DIST, SRC, '/styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/scripts', express.static(path.join(__dirname, DIST, '/scripts')));
+app.use('/scripts', express.static(path.join(__dirname, DIST, SRC, '/scripts')));
 
 ips.map(ip => {
   interfaces[ip].filter(_ip => {
