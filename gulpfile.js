@@ -124,7 +124,7 @@ const html = _ => {
 
   return gulp
     .src([
-      '*/*/*.ejs',
+      '*/*/*/**.ejs',
       path.join('!' + HTML, '_!(_)*.ejs'),
       path.join('!' + HTML, 'components/*.ejs')
     ])
