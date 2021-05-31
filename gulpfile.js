@@ -18,13 +18,11 @@ const pkg = require('./package.json');
 const PATH = {
   HTML   : 'src/views',
   STYLES : 'src/styles',
-  IMAGES : 'images',
   SCRIPTS: 'src/scripts',
-  JSON   : 'data',
   DIST   : 'dist'
 };
 
-const {HTML, STYLES, IMAGES, SCRIPTS, JSON, DIST} = PATH;
+const {HTML, STYLES, SCRIPTS, DIST} = PATH;
 
 const html = _ => {
   const _prettier = pkg.htmlBeautify;
