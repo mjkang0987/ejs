@@ -95,19 +95,6 @@ ol {
     list-style: none;
 }
 
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: "";
-    content: none;
-}
-
 em,
 dfn,
 i {
@@ -123,30 +110,9 @@ a {
     text-decoration: none;
 }
 
-ins {
-    background-color: #ff9;
-    color: #000;
-    text-decoration: none;
-}
-
-mark {
-    background-color: #ff9;
-    color: #000;
-    font-style: italic;
-    font-weight: bold;
-}
-
-del {
-    text-decoration: line-through;
-}
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-
-hr {
-    display: none;
 }
 
 input,
@@ -157,28 +123,4 @@ select {
 input {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
-}
-
-// Remove "X" button from input field
-input[type="text"] {
-    &::-ms-clear {
-        display: none;
-        width: 0;
-        height: 0;
-    }
-
-    &::-ms-reveal {
-        display: none;
-        width: 0;
-        height: 0;
-    }
-}
-
-input[type="search"] {
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-        display: none;
-    }
 }
