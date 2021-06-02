@@ -2,13 +2,7 @@
 
 # HOW TO START
 ```javascript
-npm i // package install
-npm start // node server start
+yarn install // package install
+yarn start // node server start
 rs // restart server
 ```
-
-### ADD
-* List up
-* Prettier
-* Compile
-* Release
