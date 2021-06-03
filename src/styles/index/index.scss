@@ -46,6 +46,10 @@ body {
         box-shadow: 3px 0 3px 0 rgba(0, 0, 0, .1);
         cursor: col-resize;
         background-color: #ccc;
+
+        &:hover {
+            background-color: #b1b1b1;
+        }
     }
 
     .preview {
