@@ -1,3 +1,57 @@
+@import "./partials/variable";
+
+html,
 body {
-    background-color: #fff;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: $font;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    img {
+        display: block;
+    }
+
+    button,
+    a,
+    select {
+        font-family: $font;
+    }
+
+    button,
+    a {
+        appearance: none;
+    }
+
+    button {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .aside {
+        width: 250px;
+        background-color: #fff;
+    }
+
+    .move-point {
+        width: 2px;
+        box-shadow: 3px 0 3px 0 rgba(0, 0, 0, .1);
+        cursor: col-resize;
+        background-color: #ccc;
+    }
+
+    .preview {
+        flex: 1;
+    }
+
+    @import "./partials/repo";
+    @import "./partials/pages";
 }
