@@ -33,7 +33,7 @@ groups:
           src="/images/index/avatar.svg"
           alt="<%= pkgInfo.name %>">
       </div>
-      <h1>
+      <h1 class="repo-title">
         <a
           href="<%- pkgInfo.repository.url %>"
           target="_blank">
@@ -41,16 +41,17 @@ groups:
         </a>
       </h1>
       <p class="repo-desc"><%= pkgInfo.description %></p>
-    </div>
-    <div class="page-wrap">
-      <div class="page-search">
+      <div class="repo-search">
         <label>
           <input
             class="input-search"
             type="search"
+            placeholder="SEARCH"
             required>
         </label>
       </div>
+    </div>
+    <div class="page-wrap">
       <div class="page-scroll">
         <%
         const groups = Object.keys(list);
@@ -58,7 +59,7 @@ groups:
           <div
             class="page-group-wrap"
             data-depth="0">
-            <strong class="groups-name"><%= list[g].name %></strong>
+            <strong class="page-group-name"><%= list[g].name %></strong>
             <ul class="page-groups">
               <%
                 if (list[g].pages.length > 0) {
@@ -72,8 +73,7 @@ groups:
                   </strong>
                   <ul>
                   <% page.states.map(state => { %>
-                    <li
-                      data-depth="2">
+                    <li data-depth="2">
                       <a
                         href="<%- state.href %>"
                         title="<%= `${page.name}-${state.text}` %>"
