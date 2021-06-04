@@ -238,3 +238,5 @@ dist
 /.idea/ejs-project.iml
 
 .idea/
+
+.DS_Store
