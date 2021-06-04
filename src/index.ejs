@@ -73,15 +73,15 @@ groups:
                   </strong>
                   <ul>
                   <% page.states.map(state => { %>
-                    <li data-depth="2">
-                      <a
-                        href="<%- state.href %>"
-                        title="<%= `${page.name}-${state.text}` %>"
-                        data-group="<%= list[g].name %>"
+                    <li
+                      data-depth="2"
+                      class="<%= state.unexposed ? 'disabled' : '' %>">
+                      <button
+                        type="button"
                         data-token="<%- state.token %>"
                         class="page-state">
                         <%= state.text %>
-                      </a>
+                      </button>
                     </li>
                   <% }); %>
                   </ul>
