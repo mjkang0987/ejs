@@ -52,16 +52,17 @@
                         left: 50%;
                         width: 0;
                         height: 100%;
-                        background-color: #eee;
+                        background-color: #4d98ff;
                         transform: translateX(-50%);
                         opacity: 0;
-                        transition: width .3s;
+                        transition: width .2s;
                     }
 
                     &.on,
                     &:hover {
                         .page-state {
                             font-weight: bold;
+                            color: #fff;
                         }
 
                         &:before {
