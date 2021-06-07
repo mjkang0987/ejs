@@ -154,6 +154,7 @@ app.get(`/views/**/?*.html`, (req, res, next) => {
       renderData = {
         page    : fm.data,
         data    : {},
+        state: fileState[1] || 'default',
         loadData: loadData
       };
 
