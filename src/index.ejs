@@ -65,10 +65,10 @@ groups:
                 if (list[g].pages.length > 0) {
                   list[g].pages.map(page => {
               %>
-                <li data-depth="1">
-                  <strong
-                    data-path="<%= page.path %>"
-                    class="page-name">
+                <li
+                  class="<%= page.path.replace(/\//g, '-').slice(1); %>"
+                  data-depth="1">
+                  <strong class="page-name">
                     <%= page.name %>
                   </strong>
                   <ul>
@@ -112,6 +112,7 @@ groups:
       target="_blank">WINDOW OPEN</a>
   </div>
 </main>
+<script src="/scripts/common/common.js"></script>
 <script src="/scripts/index/index.js"></script>
 </body>
 </html>
