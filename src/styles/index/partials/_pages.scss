@@ -60,6 +60,10 @@
 
                     &.on,
                     &:hover {
+                        .page-state {
+                            font-weight: bold;
+                        }
+
                         &:before {
                             opacity: 1;
                             width: 100%;
@@ -70,7 +74,7 @@
                         &:hover:before {
                             opacity: 0;
                         }
-                        
+
                         button {
                             color: #ccc;
                             pointer-events: none;
