@@ -19,6 +19,7 @@
   "port": 8080,
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-object-assign": "^7.14.5",
     "autoprefixer": "^10.2.6",
     "babel-watch": "^7.4.1",
     "del": "^6.0.0",
@@ -53,6 +54,9 @@
       "es6": true,
       "node": true,
       "jquery": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 11
     },
     "rules": {
       "strict": "off",
@@ -95,13 +99,6 @@
       "eqeqeq": [
         "error",
         "allow-null"
-      ],
-      "key-spacing": [
-        "error",
-        {
-          "beforeColon": false,
-          "afterColon": true
-        }
       ],
       "comma-spacing": [
         "error",
