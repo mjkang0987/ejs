@@ -78,7 +78,8 @@
   };
 
   const setCurrent = _ => {
-    const url = `./${current.url.length > 3 ? current.url.slice(0, 3).join('/') : current.url.join('/')}${current.state}.html`;
+    const url = `./${current.url.length > 3 ? current.url.slice(0, 3)
+      .join('/') : current.url.join('/')}${current.state}.html`;
     current._this.classList.add(TOGGLE);
     current.group.classList.add(TOGGLE);
     HELLO.classList.add(HIDE);

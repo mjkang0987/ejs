@@ -74,10 +74,10 @@ app.get('/', (req, res, next) => {
       return;
     }
 
-    const pageData = Object.keys(states).reduce((before, state) => {
-      const isDefault = state === 'default';
-      const isUnexposedPage = states[state][0] === '_';
-      const stateName = isUnexposedPage ? states[state].substr(1) : states[state];
+    const pageData = Object.keys(states).reduce((acc, curr) => {
+      const isDefault = curr === 'default';
+      const isUnexposedPage = states[curr][0] === '_';
+      const stateName = isUnexposedPage ? states[curr].substr(1) : states[curr];
 
       const stateData = {
         text     : stateName,
@@ -87,15 +87,14 @@ app.get('/', (req, res, next) => {
       };
 
       if (!isDefault) {
-        stateData.token += `-${state}`;
-        stateData.href += `.${state}`;
+        stateData.token += `-${curr}`;
+        stateData.href += `.${curr}`;
       }
 
       stateData.href += '.html';
-      before.states = before.states.concat(stateData);
+      acc.states = acc.states.concat(stateData);
 
-
-      return before;
+      return acc;
     }, {
       states: []
     });
@@ -154,7 +153,7 @@ app.get(`/views/**/?*.html`, (req, res, next) => {
       renderData = {
         page    : fm.data,
         data    : {},
-        state: fileState[1] || 'default',
+        state   : fileState[1] || 'default',
         loadData: loadData
       };
 
@@ -217,7 +216,9 @@ app.use('/styles', postcssMiddleware({
 
 app.use('/styles', express.static(path.join(__dirname, DIST, SRC, '/styles')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/scripts', express.static(path.join(__dirname, DIST, SRC, '/scripts')));
+app.use('/scripts', express.static(path.join(__dirname, SRC, '/scripts')));
+app.use('/data', express.static(path.join(__dirname, '/data')));
+// app.use('/scripts', express.static(path.join(__dirname, DIST, SRC, '/scripts')));
 
 ips.map(ip => {
   interfaces[ip].filter(_ip => {

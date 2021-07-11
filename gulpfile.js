@@ -6,6 +6,8 @@ const prettify = require('gulp-prettify');
 const frontMatter = require('gulp-front-matter');
 const htmlHint = require('gulp-htmlhint');
 const scss = require('gulp-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
@@ -31,7 +33,7 @@ const html = _ => {
     remove  : true
   };
   const htmlLint = pkg.htmlhint;
-  const _rename = {extname: '.html'};
+  let indexData = {};
 
   const generatePages = page => {
     const fm = page.fm;
@@ -44,8 +46,24 @@ const html = _ => {
       .replace(/\.[^/\\.]+$/, '')
       .split(path.sep)
       .join('/');
+    const token = srcPath.replace(/\//g, '-').slice(1);
+    const name = fm.name || srcPath;
     const isPartialPage = path.basename(srcPath)
       .substring(0, 2) === '__';
+
+    const states = Object.assign({
+      'default': name + ' 기본'
+    }, (fm.state || {}));
+
+    if (fm.group) {
+      indexData[fm.group] = indexData[fm.group] || {
+        pages: []
+      };
+    } else {
+      if (!isPartialPage) {
+        console.log(`group is not defined: ${srcPath}`);
+      }
+    }
 
     if (dataPaths) {
       if (!Array.isArray(dataPaths)) {
@@ -64,6 +82,38 @@ const html = _ => {
 
       delete require.cache[require.resolve(dataPath)];
       data[path.parse(dataPath).name] = require(dataPath);
+    }
+
+    const pageData = Object.keys(states).reduce((acc, curr) => {
+      const isDefault = curr === 'default';
+      const isUnexposedPage = states[curr][0] === '_';
+      const stateName = isUnexposedPage ? states[curr].substr(1) : states[curr];
+
+      const stateData = {
+        text     : stateName,
+        token    : token,
+        href     : srcPath,
+        unexposed: isUnexposedPage
+      };
+
+      if (!isDefault) {
+        stateData.token += `-${curr}`;
+        stateData.href += `.${curr}`;
+      }
+
+      stateData.href += '.html';
+      acc.states = acc.states.concat(stateData);
+
+      return acc;
+    }, {
+      states: []
+    });
+
+    pageData.name = name;
+    pageData.path = srcPath;
+
+    if (fm.group) {
+      indexData[fm.group].pages.push(pageData);
     }
 
     const loadData = dataPath => {
@@ -87,50 +137,99 @@ const html = _ => {
       return parsedStr;
     };
 
-    let _gulp = gulp
-      .src(page.path)
-      .pipe(frontMatter())
-      .pipe(ejs({
-          page: fm,
-          data: data,
-          loadData
-        },
-        {
-          root              : path.join(__dirname, HTML),
-          outputFunctionName: 'echo'
-        }))
-      .pipe(rename(_rename));
+    Object.keys(states).forEach(state => {
+      const isDefault = state === 'default';
+      const _rename = {extname: `${isDefault ? '' : '.' + state}.html`};
 
-    if (!isPartialPage) {
+      let _gulp = gulp
+        .src(page.path)
+        .pipe(frontMatter())
+        .pipe(ejs({
+            page: fm,
+            state,
+            data: data,
+            loadData
+          },
+          {
+            root              : path.join(__dirname, HTML),
+            outputFunctionName: 'echo'
+          }))
+        .pipe(rename(_rename));
+
+      if (!isPartialPage) {
+        _gulp = _gulp
+          .pipe(htmlHint(htmlLint))
+          .pipe(htmlHint.reporter());
+      }
+
       _gulp = _gulp
-        .pipe(htmlHint(htmlLint))
-        .pipe(htmlHint.reporter());
-    }
+        .pipe(prettify(_prettier));
 
-    _gulp = _gulp
-      .pipe(prettify(_prettier));
+      if (isPartialPage) {
+        _gulp = _gulp
+          .pipe(rename(path => {
+            path.basename = path.basename.replace(/^__/, '');
+          }));
+      }
 
-    if (isPartialPage) {
-      _gulp = _gulp
-        .pipe(rename(path => {
-          path.basename = path.basename.replace(/^__/, '');
-        }));
-    }
+      _gulp.pipe(gulp.dest(path.join(DIST, HTML)));
 
-    _gulp.pipe(gulp.dest(path.join(DIST, HTML)));
-
-    return _gulp;
+      return _gulp;
+    });
   };
+
+  // const generateIndex = file => {
+  //   const getIndexData = index => {
+  //     console.log(index)
+  //     const indexFm = index.fm;
+  //     const groups = indexFm.groups;
+  //
+  //     Object.keys(groups).forEach(group => {
+  //       if (indexData[group]) {
+  //         groups[group] = {
+  //           name: groups[group]
+  //         };
+  //
+  //         Object.assign(groups[group], indexData[group]);
+  //       } else {
+  //         console.log(`group name is not found ${group}: ${groups[group]}`);
+  //       }
+  //     });
+  //
+  //     indexFm.list = groups;
+  //     indexFm.pkgInfo = pkg;
+  //
+  //     return indexFm;
+  //   };
+  //
+  //   return gulp.src('index.ejs', {
+  //     cwd: 'src'
+  //   })
+  //     .pipe(frontMatter(_frontMatter))
+  //     .pipe(gulpData(getIndexData))
+  //     .pipe(ejs(null, {
+  //       root              : path.join(__dirname, HTML),
+  //       outputFunctionName: 'echo'
+  //     }))
+  //     .pipe(rename({
+  //       extname: '.html'
+  //     }))
+  //     .pipe(htmlHint(htmlLint))
+  //     .pipe(htmlHint.reporter())
+  //     .pipe(prettify(_prettier))
+  //     .pipe(gulp.dest(path.join(DIST, HTML)));
+  // };
 
   return gulp
     .src([
-      '*/*/*/**.ejs',
-      path.join('!' + HTML, '_!(_)*.ejs'),
+      path.join(HTML, '**/*.ejs'),
+      path.join('!' + HTML, '**/_!(_)*.ejs'),
       path.join('!' + HTML, 'components/*.ejs')
     ])
     .pipe(frontMatter(_frontMatter))
     .pipe(gulpData(generatePages))
     .pipe(pluck('fm'));
+  // .pipe(gulpData(generateIndex));
 };
 
 const clean = _ => {
@@ -150,6 +249,12 @@ const styles = _ => {
       cwd: path.join(STYLES)
     })
     .pipe(scss(options))
+    .pipe(postcss([
+      autoprefixer({
+        overrideBrowserslist: ['> 1%', 'last 2 versions', 'not ie <=8'],
+        grid                : true
+      })
+    ]))
     .pipe(gulp.dest(path.join(DIST, STYLES)));
 };
 
@@ -164,7 +269,7 @@ const scripts = _ => {
     .pipe(eslint())
     .pipe(babel())
     .pipe(eslint.format())
-    .pipe(uglify({mangle: true}))
+    // .pipe(uglify({mangle: true}))
     .pipe(gulp.dest(path.join(DIST, SCRIPTS)));
 };
 
